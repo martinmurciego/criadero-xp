@@ -6,10 +6,11 @@ import java.util.Map;
 import ar.uba.fi.criaderoxp.domain.event.Agenda;
 import ar.uba.fi.criaderoxp.domain.property.Propiedad;
 
+@Deprecated
 public class Individuo {
 	private Raza raza;
 	private Map<String, Propiedad> propiedades;
-	private Genero genero;
+	private Sexo genero;
 
 	private Camada camada;
 	private Jaula jaula;
@@ -28,11 +29,11 @@ public class Individuo {
 	/*-------------------------------------------------------------------------
 	 * 								GETTERS Y SETTERS
 	 -------------------------------------------------------------------------*/
-	public Genero getGenero() {
+	public Sexo getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Genero genero) {
+	public void setGenero(Sexo genero) {
 		this.genero = genero;
 	}
 

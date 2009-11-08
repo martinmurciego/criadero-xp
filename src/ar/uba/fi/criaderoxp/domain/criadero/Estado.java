@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Representa estados que puede tomar un animal durante el transcurso de su vida.
+ * Representa estados que puede tomar un animal durante el transcurso de su
+ * vida.
  */
 public class Estado {
 	private String codigo;
@@ -39,10 +40,18 @@ public class Estado {
 	/**
 	 * @param estado
 	 *            {@link Estado} estado actual.
-	 * @return {@link Boolean#TRUE} si es válido llegar del estado actual a éste.
+	 * @return {@link Boolean#TRUE} si es válido llegar del estado actual a
+	 *         éste.
 	 * @see #getRequisitos()
 	 */
 	public Boolean isValido(Estado estado) {
 		return this.requisitos.contains(estado);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null)
+				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Estado) obj)
+						.getCodigo().equals(this.getCodigo()))));
 	}
 }

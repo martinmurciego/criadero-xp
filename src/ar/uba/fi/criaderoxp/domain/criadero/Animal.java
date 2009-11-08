@@ -11,11 +11,12 @@ import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
  * 
  * @author mmazzei
  */
+@Deprecated
 public abstract class Animal {
 	private Date fechaNacimiento;
 	private Date fechaMuerte;
 	private Float peso;
-	private Genero genero;
+	private Sexo sexo;
 	private Agenda registro;
 	private Animal pareja;
 	private Estado estado;
@@ -88,20 +89,20 @@ public abstract class Animal {
 	}
 
 	/**
-	 * @param genero
+	 * @param sexo
 	 *            Género detectado del animal.
 	 * @param esReproductor
 	 *            {@link Boolean#TRUE} si debe pasarse al animal a "Reproductor". {@link Boolean#FALSE} en caso de
 	 *            "Productor".
 	 */
-	public void sexar(String descripcion, Genero genero, Boolean esReproductor) {
+	public void sexar(String descripcion, Sexo sexo, Boolean esReproductor) {
 		Estado nuevoEstado = esReproductor ? EstadoHelperQUITAR.enEspera : EstadoHelperQUITAR.productor;
 		if (!nuevoEstado.isValido(this.estado)) {
 			throw new BusinessException("Estado inválido.");
 		}
 
 		this.registro.addEvento(TipoEventoHelperQUITAR.sexado, descripcion);
-		this.genero = genero;
+		this.sexo = sexo;
 		this.estado = nuevoEstado;
 	}
 
@@ -143,7 +144,7 @@ public abstract class Animal {
 	public void diagnosticar(String descripcion, Boolean estaPreniada) {
 		Estado nuevoEstado = estaPreniada ? EstadoHelperQUITAR.preniado : EstadoHelperQUITAR.enEspera;
 		// TODO (mmazzei) - Evaluar que sea macho.
-		if (!nuevoEstado.isValido(this.estado) /* || this.genero == MACHO */) {
+		if (!nuevoEstado.isValido(this.estado) /* || this.sexo == MACHO */) {
 			throw new BusinessException("Estado inválido.");
 		}
 

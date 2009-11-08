@@ -49,6 +49,7 @@ public class EstadoHelperQUITAR {
 		amamantando = new Estado("Amamantando");
 		amamantando.addRequisito(preniado);
 		enEspera.addRequisito(amamantando);
+		juntado.addRequisito(amamantando);
 
 		sacrificado = new Estado("Sacrificado");
 		sacrificado.addRequisito(productor);
@@ -65,6 +66,15 @@ public class EstadoHelperQUITAR {
 		enfermo.addRequisito(montado);
 		enfermo.addRequisito(preniado);
 		enfermo.addRequisito(amamantando);
+
+		gazapo.addRequisito(enfermo);
+		engorde.addRequisito(enfermo);
+		productor.addRequisito(enfermo);
+		enEspera.addRequisito(enfermo);
+		juntado.addRequisito(enfermo);
+		montado.addRequisito(enfermo);
+		preniado.addRequisito(enfermo);
+		amamantando.addRequisito(enfermo);
 
 		muerto = new Estado("Muerto");
 		muerto.addRequisito(gazapo);
