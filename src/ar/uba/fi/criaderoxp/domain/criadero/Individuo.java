@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ar.uba.fi.criaderoxp.domain.event.Agenda;
+import ar.uba.fi.criaderoxp.domain.model.Camada;
+import ar.uba.fi.criaderoxp.domain.model.Jaula;
 import ar.uba.fi.criaderoxp.domain.property.Propiedad;
 
 @Deprecated

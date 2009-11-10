@@ -1,4 +1,4 @@
-package ar.uba.fi.criaderoxp.domain.criadero;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,11 +12,11 @@ import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 public class Jaula {
 	private String codigo;
 	private Integer capacidad;
-	private Set<Individuo> individuos;
+	private Set<Conejo> conejos;
 
 	public Jaula(String codigo) {
 		this.codigo = codigo;
-		this.individuos = new HashSet<Individuo>();
+		this.conejos = new HashSet<Conejo>();
 	}
 
 	/** @return El código de identificación. No puede modificarse. */
@@ -24,10 +24,7 @@ public class Jaula {
 		return codigo;
 	}
 
-	/**
-	 * @return La cantidad de indiviudos que pueden habitar simultáneamente la
-	 *         jaula.
-	 */
+	/** @return La cantidad de conejos que entran en la jaula. */
 	public Integer getCapacidad() {
 		return capacidad;
 	}
@@ -36,22 +33,22 @@ public class Jaula {
 		this.capacidad = capacidad;
 	}
 
-	/** @return Los individuos que habitan la jaula. */
-	public Set<Individuo> getIndividuos() {
-		return individuos;
+	/** @return Los conejos que habitan la jaula. */
+	public Set<Conejo> getConejos() {
+		return this.conejos;
 	}
 
 	/**
-	 * Añade un individuo a la jaula, sólo si no la habita aún.
+	 * Añade un conejo a la jaula, sólo si no la habita aún.
 	 * 
 	 * @throws BusinessException
 	 *             Si la jaula estaba llena.
 	 */
-	public void add(Individuo individuo) {
-		if (this.individuos.size() >= this.capacidad) {
+	public void add(Conejo conejo) {
+		if (this.conejos.size() >= this.capacidad) {
 			throw new BusinessException("La jaula está llena.");
 		}
-		this.individuos.add(individuo);
+		this.conejos.add(conejo);
 	}
 
 }

@@ -1,15 +1,19 @@
-package ar.uba.fi.criaderoxp.domain.criadero;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.uba.fi.criaderoxp.domain.criadero.Sexo;
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
+import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
+import ar.uba.fi.criaderoxp.domain.factory.EstadoHelperQUITAR;
 
 /**
- * Conjunto de pruebas sobre la clase Conejo.
+ * Conjunto de pruebas sobre {@link Conejo}.
  * 
  * @author mmazzei
+ * @category Test de unidad
  */
 public class ConejoTest {
 	private Conejo conejo;
@@ -23,7 +27,7 @@ public class ConejoTest {
 	/**
 	 * Verifica que un conejo sólo pueda nacer una vez.
 	 */
-	@Test(expected = BusinessException.class)
+	@Test(expected = InvalidStateException.class)
 	public void soloNaceUnaVez() {
 		// Aquí debería fallar
 		conejo.nacer();
@@ -92,6 +96,25 @@ public class ConejoTest {
 		conejo2.sexar(Sexo.MACHO, true);
 
 		conejo.juntar(conejo2);
+	}
+
+	/**
+	 * Verifica que puede obtenerse la pareja de un conejo juntado.
+	 */
+	@Test
+	public void puedeObtenerseLaParejaDeConejoJuntado() {
+		conejo.destetar();
+		conejo.sexar(Sexo.MACHO, true);
+
+		// Creo un conejo de otro sexo para que sea su pareja
+		Conejo conejo2 = new Conejo();
+		conejo2.nacer();
+		conejo2.destetar();
+		conejo2.sexar(Sexo.HEMBRA, true);
+
+		conejo.juntar(conejo2);
+
+		Assert.assertEquals(conejo2, conejo.getPareja());
 	}
 
 	/**
@@ -198,7 +221,7 @@ public class ConejoTest {
 	/**
 	 * Verifica que un conejo muerto no pueda cambiar de estados.
 	 */
-	@Test(expected = BusinessException.class)
+	@Test(expected = InvalidStateException.class)
 	public void muertoNoPuedeCambiarDeEstado() {
 		conejo.morir();
 		conejo.destetar();
