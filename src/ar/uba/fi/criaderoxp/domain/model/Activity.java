@@ -15,7 +15,7 @@ import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
  */
 public class Activity {
 	private String codigo;
-	private String description;
+	private String descripcion;
 	private Set<Estado> requisitos;
 	private Estado destino;
 
@@ -30,8 +30,12 @@ public class Activity {
 	}
 
 	/** @return Una descripción de la actividad. */
-	public String getDescription() {
-		return description;
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	/** Configura el estado al que deve realizarse la transición. */
@@ -44,9 +48,8 @@ public class Activity {
 		return this.requisitos;
 	}
 
-	/** Añade un nuevo estado a los posibles. */
-	public void addRequisito(Estado estado) {
-		this.requisitos.add(estado);
+	public void setRequisitos(Set<Estado> requisitos) {
+		this.requisitos = requisitos;
 	}
 
 	/**

@@ -1,14 +1,17 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
 /**
- * Representa estados que puede tomar un animal durante el transcurso de su
- * vida.
+ * Indica si un individuo es femenino o masculino.
  */
-public class Estado {
+public class Sexo {
+	// TODO (mmazzei) - Ver qué hacer con esto...
+	public static final Sexo MACHO = new Sexo("macho");
+	public static final Sexo HEMBRA = new Sexo("hembra");
+
 	private String codigo;
 	private String descripcion;
 
-	public Estado(String codigo) {
+	public Sexo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -17,7 +20,7 @@ public class Estado {
 		return codigo;
 	}
 
-	/** @return Una descripción del estado. */
+	/** @return Una descripción del sexo. */
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -29,7 +32,7 @@ public class Estado {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null)
-				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Estado) obj)
+				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Sexo) obj)
 						.getCodigo().equals(this.getCodigo()))));
 	}
 }

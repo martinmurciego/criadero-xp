@@ -2,11 +2,11 @@ package ar.uba.fi.criaderoxp.domain.model;
 
 import java.util.Date;
 
-import ar.uba.fi.criaderoxp.domain.criadero.Sexo;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
-import ar.uba.fi.criaderoxp.domain.factory.ActivityHelperQUITAR;
-import ar.uba.fi.criaderoxp.domain.factory.EstadoHelperQUITAR;
 
 /**
  * Organizar conejos es el objetivo principal del sistema; por lo tanto, esta
@@ -18,15 +18,16 @@ import ar.uba.fi.criaderoxp.domain.factory.EstadoHelperQUITAR;
  * @category Aggregate Root
  */
 public class Conejo {
+	BeanFactory activities = new ClassPathXmlApplicationContext("activities.xml");
 	private Date fechaNacimiento;
-	private Estado estado = EstadoHelperQUITAR.nullObjectEstado;
+	private Estado estado = activities.getBean("nullObjectEstado", Estado.class);
 	private Sexo sexo;
 	private Conejo pareja;
 
 	// Solución transitoria para representar estados concurrentes (al mismo
 	// tiempo que amamanta, una hembra puede juntarse y quedar preñada).
 	private boolean isAmamantando = false;
-	private Estado estadoAnterior = EstadoHelperQUITAR.nullObjectEstado;
+	private Estado estadoAnterior = activities.getBean("nullObjectEstado", Estado.class);
 
 	/*-------------------------------------------------------------------------
 	 * 							GETTERS y SETTERS
@@ -64,7 +65,7 @@ public class Conejo {
 	 * @throws InvalidStateException
 	 */
 	public void nacer() {
-		ActivityHelperQUITAR.nacimiento.execute(this);
+		activities.getBean("nacimiento", Activity.class).execute(this);
 		this.fechaNacimiento = new Date();
 	}
 
@@ -74,7 +75,7 @@ public class Conejo {
 	 * @throws InvalidStateException
 	 */
 	public void destetar() {
-		ActivityHelperQUITAR.destete.execute(this);
+		activities.getBean("destete", Activity.class).execute(this);
 	}
 
 	/**
@@ -86,9 +87,9 @@ public class Conejo {
 
 	public void sexar(Sexo sexo, boolean esReproductor) {
 		if (esReproductor) {
-			ActivityHelperQUITAR.sexadoReproductor.execute(this);
+			activities.getBean("sexadoReproductor", Activity.class).execute(this);
 		} else {
-			ActivityHelperQUITAR.sexadoProductor.execute(this);
+			activities.getBean("sexadoProductor", Activity.class).execute(this);
 		}
 
 		this.sexo = sexo;
@@ -105,10 +106,9 @@ public class Conejo {
 	 *             En caso de que la pareja sea del mismo sexo.
 	 */
 	public void juntar(Conejo pareja) {
-		ActivityHelperQUITAR.junta.execute(this);
+		activities.getBean("junta", Activity.class).execute(this);
 		if (this.sexo.equals(pareja.sexo)) {
-			throw new BusinessException(
-					"No pueden juntarse dos conejos del mismo sexo.");
+			throw new BusinessException("No pueden juntarse dos conejos del mismo sexo.");
 		}
 
 		this.pareja = pareja;
@@ -122,15 +122,14 @@ public class Conejo {
 	 */
 	public void montura() {
 		if (this.isMacho()) {
-			ActivityHelperQUITAR.monturaMacho.execute(this);
+			activities.getBean("monturaMacho", Activity.class).execute(this);
 		} else {
-			ActivityHelperQUITAR.monturaHembra.execute(this);
+			activities.getBean("monturaHembra", Activity.class).execute(this);
 		}
 
-		// Se desasigna la pareja del macho ya que luego de la montura se
-		// lo cambia de jaula.
-		// Pero queda en la hembra para luego poder determinar el padre de
-		// la futura camada.
+		// Se desasigna la pareja del macho ya que luego de la montura se lo
+		// cambia de jaula. Pero queda en la hembra para luego poder determinar
+		// el padre de la futura camada.
 		if (this.isMacho()) {
 			this.pareja = null;
 		}
@@ -144,9 +143,9 @@ public class Conejo {
 	 */
 	public void diagnosticar(boolean isPreniada) {
 		if (isPreniada) {
-			ActivityHelperQUITAR.diagnosticoPreniada.execute(this);
+			activities.getBean("diagnosticoPreniada", Activity.class).execute(this);
 		} else {
-			ActivityHelperQUITAR.diagnosticoNoPreniada.execute(this);
+			activities.getBean("diagnosticoNoPreniada", Activity.class).execute(this);
 		}
 	}
 
@@ -156,8 +155,7 @@ public class Conejo {
 	 * @throws InvalidStateException
 	 */
 	public void parir() {
-		ActivityHelperQUITAR.parto.execute(this);
-
+		activities.getBean("parto", Activity.class).execute(this);
 		this.isAmamantando = true;
 	}
 
@@ -167,7 +165,7 @@ public class Conejo {
 	 * @throws InvalidStateException
 	 */
 	public void destetarCrias() {
-		ActivityHelperQUITAR.desteteCrias.execute(this);
+		activities.getBean("desteteCrias", Activity.class).execute(this);
 		if (!this.isAmamantando()) {
 			throw new InvalidStateException();
 		}
@@ -176,7 +174,7 @@ public class Conejo {
 
 	/** @throws InvalidStateException */
 	public void mudar(Jaula destino) {
-		ActivityHelperQUITAR.mudanza.execute(this);
+		activities.getBean("mudanza", Activity.class).execute(this);
 		destino.add(this);
 	}
 
@@ -187,23 +185,23 @@ public class Conejo {
 	 * @throws InvalidStateException
 	 */
 	public void sacrificar() {
-		ActivityHelperQUITAR.sacrificio.execute(this);
+		activities.getBean("sacrificio", Activity.class).execute(this);
 	}
 
 	/** @throws InvalidStateException */
 	public void vender() {
-		ActivityHelperQUITAR.venta.execute(this);
+		activities.getBean("venta", Activity.class).execute(this);
 	}
 
 	/** @throws InvalidStateException */
 	public void enfermar() {
 		this.estadoAnterior = this.estado;
-		ActivityHelperQUITAR.enfermedad.execute(this);
+		activities.getBean("enfermedad", Activity.class).execute(this);
 	}
 
 	/** @throws InvalidStateException */
 	public void curar() {
-		ActivityHelperQUITAR.cura.execute(this);
+		activities.getBean("cura", Activity.class).execute(this);
 		this.estado = this.estadoAnterior;
 	}
 
@@ -214,6 +212,6 @@ public class Conejo {
 	 * @throws InvalidStateException
 	 */
 	public void morir() {
-		ActivityHelperQUITAR.muerte.execute(this);
+		activities.getBean("muerte", Activity.class).execute(this);
 	}
 }
