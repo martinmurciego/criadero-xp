@@ -3,11 +3,11 @@ package ar.uba.fi.criaderoxp.domain.model;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import ar.uba.fi.criaderoxp.domain.criadero.Sexo;
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
-import ar.uba.fi.criaderoxp.domain.factory.EstadoHelperQUITAR;
 
 /**
  * Conjunto de pruebas sobre {@link Conejo}.
@@ -17,9 +17,11 @@ import ar.uba.fi.criaderoxp.domain.factory.EstadoHelperQUITAR;
  */
 public class ConejoTest {
 	private Conejo conejo;
+	private BeanFactory activities;
 
 	@Before
 	public void setUp() throws Exception {
+		activities = new ClassPathXmlApplicationContext("activities.xml");
 		this.conejo = new Conejo();
 		conejo.nacer();
 	}
@@ -38,7 +40,7 @@ public class ConejoTest {
 	 */
 	@Test
 	public void esGazapoAlNacer() {
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.gazapo);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("gazapo"));
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class ConejoTest {
 	@Test
 	public void siEsGazapoPuedeDestetarse() {
 		conejo.destetar();
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.engorde);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("engorde"));
 	}
 
 	/**
@@ -57,7 +59,7 @@ public class ConejoTest {
 	public void enEngordePuedePasarAReproductorAlSexarse() {
 		conejo.destetar();
 		conejo.sexar(Sexo.MACHO, true);
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.enEspera);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
 	}
 
 	/**
@@ -67,7 +69,7 @@ public class ConejoTest {
 	public void enEngordePuedePasarAProductorAlSexarse() {
 		conejo.destetar();
 		conejo.sexar(Sexo.MACHO, false);
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.productor);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("productor"));
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class ConejoTest {
 		conejo.destetar();
 		conejo.sexar(Sexo.MACHO, true);
 		conejo.juntar(new Conejo());
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.juntado);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("juntado"));
 	}
 
 	/**
@@ -125,10 +127,10 @@ public class ConejoTest {
 		conejo.destetar();
 		conejo.sexar(Sexo.MACHO, false);
 		conejo.sacrificar();
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.sacrificado);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("sacrificado"));
 
 		conejo.vender();
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.vendido);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("vendido"));
 	}
 
 	/**
@@ -140,7 +142,7 @@ public class ConejoTest {
 		conejo.sexar(Sexo.MACHO, true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.enEspera);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
 	}
 
 	/**
@@ -154,7 +156,7 @@ public class ConejoTest {
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(false);
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.enEspera);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
 	}
 
 	/**
@@ -169,7 +171,7 @@ public class ConejoTest {
 		conejo.montura();
 		conejo.diagnosticar(true);
 		conejo.parir();
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.amamantando);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("amamantando"));
 	}
 
 	/**
@@ -187,7 +189,7 @@ public class ConejoTest {
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(true);
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.preniado);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("preniado"));
 	}
 
 	/**
@@ -203,7 +205,7 @@ public class ConejoTest {
 		conejo.diagnosticar(true);
 		conejo.parir();
 		conejo.destetarCrias();
-		Assert.assertEquals(conejo.getEstado(), EstadoHelperQUITAR.enEspera);
+		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
 	}
 
 	/**

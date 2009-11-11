@@ -7,11 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.uba.fi.criaderoxp.domain.criadero.Sexo;
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.model.Camada;
 import ar.uba.fi.criaderoxp.domain.model.Conejo;
 import ar.uba.fi.criaderoxp.domain.model.ConejoTest;
+import ar.uba.fi.criaderoxp.domain.model.Sexo;
 import ar.uba.fi.criaderoxp.domain.repository.CamadaRepositoryTest;
 
 /**

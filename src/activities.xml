@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="gazapo" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Gazapo" />
+	</bean>
+	<bean id="engorde" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Engorde" />
+	</bean>
+	<bean id="productor" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Productor" />
+	</bean>
+	<bean id="enEspera" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="En espera" />
+	</bean>
+	<bean id="juntado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Juntado" />
+	</bean>
+	<bean id="montado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Montado" />
+	</bean>
+	<bean id="preniado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Preniado" />
+	</bean>
+	<bean id="amamantando" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Amamantando" />
+	</bean>
+	<bean id="sacrificado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Sacrificado" />
+	</bean>
+	<bean id="vendido" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Vendido" />
+	</bean>
+	<bean id="enfermo" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Enfermo" />
+	</bean>
+	<bean id="muerto" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Muerto" />
+	</bean>
+	<bean id="nullObjectEstado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
+		<constructor-arg value="Null object" />
+	</bean>
+
+	<bean id="nacimiento" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Nacimiento" />
+		<property name="requisitos">
+			<set>
+				<ref bean="nullObjectEstado" />
+			</set>
+		</property>
+		<property name="destino" ref="gazapo" />
+	</bean>
+	<bean id="destete" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Destete" />
+		<property name="requisitos">
+			<set>
+				<ref bean="gazapo" />
+			</set>
+		</property>
+		<property name="destino" ref="engorde" />
+	</bean>
+
+	<bean id="sexadoProductor" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Sexado productor" />
+		<property name="requisitos">
+			<set>
+				<ref bean="engorde" />
+			</set>
+		</property>
+		<property name="destino" ref="productor" />
+	</bean>
+
+	<bean id="sexadoReproductor" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Sexado reproductor" />
+		<property name="requisitos">
+			<set>
+				<ref bean="engorde" />
+			</set>
+		</property>
+		<property name="destino" ref="enEspera" />
+	</bean>
+
+	<bean id="junta" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Junta" />
+		<property name="requisitos">
+			<set>
+				<ref bean="amamantando" />
+				<ref bean="enEspera" />
+			</set>
+		</property>
+		<property name="destino" ref="juntado" />
+	</bean>
+
+	<bean id="monturaMacho" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Montura macho" />
+		<property name="requisitos">
+			<set>
+				<ref bean="juntado" />
+			</set>
+		</property>
+		<property name="destino" ref="enEspera" />
+	</bean>
+
+	<bean id="monturaHembra" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Montura hembra" />
+		<property name="requisitos">
+			<set>
+				<ref bean="juntado" />
+			</set>
+		</property>
+		<property name="destino" ref="montado" />
+	</bean>
+
+	<bean id="diagnosticoPreniada" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Diagnóstico preñada" />
+		<property name="requisitos">
+			<set>
+				<ref bean="montado" />
+			</set>
+		</property>
+		<property name="destino" ref="preniado" />
+	</bean>
+
+	<bean id="diagnosticoNoPreniada" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Diagnóstico no preñada" />
+		<property name="requisitos">
+			<set>
+				<ref bean="montado" />
+			</set>
+		</property>
+		<property name="destino" ref="enEspera" />
+	</bean>
+
+	<bean id="parto" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Parto" />
+		<property name="requisitos">
+			<set>
+				<ref bean="preniado" />
+			</set>
+		</property>
+		<property name="destino" ref="amamantando" />
+	</bean>
+
+	<bean id="desteteCrias" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Destete crías" />
+		<property name="requisitos">
+			<set>
+				<ref bean="amamantando" />
+			</set>
+		</property>
+		<property name="destino" ref="enEspera" />
+	</bean>
+
+	<bean id="mudanza" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Mudanza" />
+		<property name="requisitos">
+			<set>
+				<ref bean="gazapo" />
+				<ref bean="engorde" />
+				<ref bean="productor" />
+				<ref bean="preniado" />
+				<ref bean="enEspera" />
+				<ref bean="montado" />
+				<ref bean="juntado" />
+				<ref bean="amamantando" />
+				<ref bean="enfermo" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="sacrificio" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Sacrificio" />
+		<property name="requisitos">
+			<set>
+				<ref bean="productor" />
+			</set>
+		</property>
+		<property name="destino" ref="sacrificado" />
+	</bean>
+
+	<bean id="venta" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Venta" />
+		<property name="requisitos">
+			<set>
+				<ref bean="gazapo" />
+				<ref bean="engorde" />
+				<ref bean="productor" />
+				<ref bean="preniado" />
+				<ref bean="enEspera" />
+				<ref bean="montado" />
+				<ref bean="juntado" />
+				<ref bean="amamantando" />
+				<ref bean="sacrificado" />
+			</set>
+		</property>
+		<property name="destino" ref="vendido" />
+	</bean>
+
+	<bean id="enfermedad" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Enfermedad" />
+		<property name="requisitos">
+			<set>
+				<ref bean="gazapo" />
+				<ref bean="engorde" />
+				<ref bean="productor" />
+				<ref bean="preniado" />
+				<ref bean="enEspera" />
+				<ref bean="montado" />
+				<ref bean="juntado" />
+				<ref bean="amamantando" />
+			</set>
+		</property>
+		<property name="destino" ref="enfermo" />
+	</bean>
+
+	<bean id="cura" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Cura" />
+		<property name="requisitos">
+			<set>
+				<ref bean="enfermo" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="muerte" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Muerte" />
+		<property name="requisitos">
+			<set>
+				<ref bean="gazapo" />
+				<ref bean="engorde" />
+				<ref bean="productor" />
+				<ref bean="preniado" />
+				<ref bean="enEspera" />
+				<ref bean="montado" />
+				<ref bean="juntado" />
+				<ref bean="amamantando" />
+			</set>
+		</property>
+		<property name="destino" ref="muerto" />
+	</bean>
+</beans>
