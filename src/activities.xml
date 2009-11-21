@@ -3,6 +3,51 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+	<!-- TIPOS DE EVENTO -->
+	<bean id="te_nacimiento" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="nacimiento" />
+	</bean>
+	<bean id="te_destete" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="destete" />
+	</bean>
+	<bean id="te_sexado" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="sexado" />
+	</bean>
+	<bean id="te_junta" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="junta" />
+	</bean>
+	<bean id="te_montura" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="montura" />
+	</bean>
+	<bean id="te_diagnostico" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="diagnostico" />
+	</bean>
+	<bean id="te_parto" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="parto" />
+	</bean>
+	<bean id="te_desteteCrias" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="desteteCrias" />
+	</bean>
+	<bean id="te_mudanza" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="mudanza" />
+	</bean>
+	<bean id="te_sacrificio" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="sacrificio" />
+	</bean>
+	<bean id="te_venta" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="venta" />
+	</bean>
+	<bean id="te_enfermedad" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="enfermedad" />
+	</bean>
+	<bean id="te_cura" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="cura" />
+	</bean>
+	<bean id="te_muerte" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="muerte" />
+	</bean>
+
+	<!-- ESTADOS -->
 	<bean id="gazapo" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Gazapo" />
 	</bean>
@@ -43,8 +88,10 @@
 		<constructor-arg value="Null object" />
 	</bean>
 
+	<!-- ACTIVIDADES -->
 	<bean id="nacimiento" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Nacimiento" />
+		<property name="tipoEvento" ref="te_nacimiento" />
 		<property name="requisitos">
 			<set>
 				<ref bean="nullObjectEstado" />
@@ -54,6 +101,7 @@
 	</bean>
 	<bean id="destete" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Destete" />
+		<property name="tipoEvento" ref="te_destete" />
 		<property name="requisitos">
 			<set>
 				<ref bean="gazapo" />
@@ -64,6 +112,7 @@
 
 	<bean id="sexadoProductor" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Sexado productor" />
+		<property name="tipoEvento" ref="te_sexado" />
 		<property name="requisitos">
 			<set>
 				<ref bean="engorde" />
@@ -74,6 +123,7 @@
 
 	<bean id="sexadoReproductor" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Sexado reproductor" />
+		<property name="tipoEvento" ref="te_sexado" />
 		<property name="requisitos">
 			<set>
 				<ref bean="engorde" />
@@ -84,6 +134,7 @@
 
 	<bean id="junta" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Junta" />
+		<property name="tipoEvento" ref="te_junta" />
 		<property name="requisitos">
 			<set>
 				<ref bean="amamantando" />
@@ -95,6 +146,7 @@
 
 	<bean id="monturaMacho" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Montura macho" />
+		<property name="tipoEvento" ref="te_montura" />
 		<property name="requisitos">
 			<set>
 				<ref bean="juntado" />
@@ -105,6 +157,7 @@
 
 	<bean id="monturaHembra" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Montura hembra" />
+		<property name="tipoEvento" ref="te_montura" />
 		<property name="requisitos">
 			<set>
 				<ref bean="juntado" />
@@ -115,6 +168,7 @@
 
 	<bean id="diagnosticoPreniada" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Diagnóstico preñada" />
+		<property name="tipoEvento" ref="te_diagnostico" />
 		<property name="requisitos">
 			<set>
 				<ref bean="montado" />
@@ -125,6 +179,7 @@
 
 	<bean id="diagnosticoNoPreniada" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Diagnóstico no preñada" />
+		<property name="tipoEvento" ref="te_diagnostico" />
 		<property name="requisitos">
 			<set>
 				<ref bean="montado" />
@@ -135,6 +190,7 @@
 
 	<bean id="parto" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Parto" />
+		<property name="tipoEvento" ref="te_parto" />
 		<property name="requisitos">
 			<set>
 				<ref bean="preniado" />
@@ -145,6 +201,7 @@
 
 	<bean id="desteteCrias" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Destete crías" />
+		<property name="tipoEvento" ref="te_desteteCrias" />
 		<property name="requisitos">
 			<set>
 				<ref bean="amamantando" />
@@ -155,6 +212,7 @@
 
 	<bean id="mudanza" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Mudanza" />
+		<property name="tipoEvento" ref="te_mudanza" />
 		<property name="requisitos">
 			<set>
 				<ref bean="gazapo" />
@@ -172,6 +230,7 @@
 
 	<bean id="sacrificio" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Sacrificio" />
+		<property name="tipoEvento" ref="te_sacrificio" />
 		<property name="requisitos">
 			<set>
 				<ref bean="productor" />
@@ -182,6 +241,7 @@
 
 	<bean id="venta" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Venta" />
+		<property name="tipoEvento" ref="te_venta" />
 		<property name="requisitos">
 			<set>
 				<ref bean="gazapo" />
@@ -200,6 +260,7 @@
 
 	<bean id="enfermedad" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Enfermedad" />
+		<property name="tipoEvento" ref="te_enfermedad" />
 		<property name="requisitos">
 			<set>
 				<ref bean="gazapo" />
@@ -217,6 +278,7 @@
 
 	<bean id="cura" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Cura" />
+		<property name="tipoEvento" ref="te_cura" />
 		<property name="requisitos">
 			<set>
 				<ref bean="enfermo" />
@@ -226,6 +288,7 @@
 
 	<bean id="muerte" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Muerte" />
+		<property name="tipoEvento" ref="te_muerte" />
 		<property name="requisitos">
 			<set>
 				<ref bean="gazapo" />
@@ -236,6 +299,7 @@
 				<ref bean="montado" />
 				<ref bean="juntado" />
 				<ref bean="amamantando" />
+				<ref bean="enfermo" />
 			</set>
 		</property>
 		<property name="destino" ref="muerto" />

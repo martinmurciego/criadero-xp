@@ -18,15 +18,18 @@ import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
  * @category Aggregate Root
  */
 public class Conejo {
-	BeanFactory activities = new ClassPathXmlApplicationContext("activities.xml");
+	BeanFactory activities = new ClassPathXmlApplicationContext("testingContext.xml");
 	private Date fechaNacimiento;
 	private Estado estado = activities.getBean("nullObjectEstado", Estado.class);
 	private Sexo sexo;
 	private Conejo pareja;
+	private Registro registro = new Registro();
 
 	// Solución transitoria para representar estados concurrentes (al mismo
 	// tiempo que amamanta, una hembra puede juntarse y quedar preñada).
 	private boolean isAmamantando = false;
+
+	// Solución para volver al estado anterior desde cuando un enfermo se cura
 	private Estado estadoAnterior = activities.getBean("nullObjectEstado", Estado.class);
 
 	/*-------------------------------------------------------------------------
@@ -54,6 +57,11 @@ public class Conejo {
 	/** @return true si la hembra ha parido y aún no ha sido destetada la camada. */
 	private boolean isAmamantando() {
 		return this.isAmamantando;
+	}
+
+	/** @return El registro de toda la actividad del conejo. */
+	public Registro getRegistro() {
+		return this.registro;
 	}
 
 	/*-------------------------------------------------------------------------

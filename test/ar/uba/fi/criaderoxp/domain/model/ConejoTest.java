@@ -228,4 +228,37 @@ public class ConejoTest {
 		conejo.morir();
 		conejo.destetar();
 	}
+
+	/**
+	 * Verifica que se registran tantas actividades como haya ejecutado en el
+	 * conejo.
+	 */
+	@Test
+	public void seRegistranTodasLasActividadesEjecutadas() {
+		int cantInicialEventos = conejo.getRegistro().getEventos().size();
+		conejo.destetar();
+		conejo.enfermar();
+		conejo.curar();
+		int cantFinalEventos = conejo.getRegistro().getEventos().size();
+
+		// Compruebo que se hayan registrado tres eventos
+		Assert.assertEquals(3, cantFinalEventos - cantInicialEventos);
+	}
+
+	/**
+	 * Verifica que se registran los eventos adecuados para la actividad que se
+	 * ejecuta.
+	 */
+	@Test
+	public void seRegistranLosEventosAdecuadosParaLaActividad() {
+		TipoEvento tipoCorrecto = activities.getBean("muerte", Activity.class).getTipoEvento();
+		conejo.destetar();
+		conejo.enfermar();
+		conejo.morir();
+		TipoEvento tipoRegistrado = conejo.getRegistro().getUltimoEvento().getTipo();
+
+		// Compruebo que se hayan registrado tres eventos
+		Assert.assertEquals(tipoCorrecto, tipoRegistrado);
+	}
+
 }

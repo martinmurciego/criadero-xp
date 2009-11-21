@@ -9,10 +9,12 @@ import java.util.Date;
 public class Evento {
 	private Date fecha;
 	private String descripcion;
+	private TipoEvento tipo;
 
-	public Evento(String descripcion) {
+	public Evento(String descripcion, TipoEvento tipo) {
 		this.descripcion = descripcion;
 		this.fecha = new Date();
+		this.tipo = tipo;
 	}
 
 	/** @return Una descripción del evento. */
@@ -20,8 +22,9 @@ public class Evento {
 		return descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	/** @return La clasificación del evento. */
+	public TipoEvento getTipo() {
+		return tipo;
 	}
 
 	/** @return La fecha en la que sucedió el evento. */

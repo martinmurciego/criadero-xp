@@ -18,6 +18,7 @@ public class Activity {
 	private String descripcion;
 	private Set<Estado> requisitos;
 	private Estado destino;
+	private TipoEvento tipoEvento;
 
 	public Activity(String codigo) {
 		this.codigo = codigo;
@@ -36,6 +37,15 @@ public class Activity {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	/** @return El tipo de evento que debe registrarse al ejecutar la actividad. */
+	public TipoEvento getTipoEvento() {
+		return tipoEvento;
+	}
+
+	public void setTipoEvento(TipoEvento tipoEvento) {
+		this.tipoEvento = tipoEvento;
 	}
 
 	/** Configura el estado al que deve realizarse la transición. */
@@ -64,6 +74,7 @@ public class Activity {
 		if (this.destino != null) {
 			conejo.setEstado(this.destino);
 		}
+		conejo.getRegistro().registrar("", this.getTipoEvento());
 	}
 
 	/**
