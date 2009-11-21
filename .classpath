@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="src" path="lib"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="lib/org.springframework.beans.jar" />
-	<classpathentry kind="lib" path="lib/org.springframework.context.jar" />
-	<classpathentry kind="lib" path="lib/org.springframework.core.jar" />
-	<classpathentry kind="lib" path="lib/commons-logging.jar" />
-	<classpathentry kind="lib" path="lib/org.springframework.asm.jar" />
-	<classpathentry kind="lib" path="lib/org.springframework.expression.jar" />
-	<classpathentry kind="output" path="bin"/>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/org/antlr/com.springsource.org.antlr/3.0.1/com.springsource.org.antlr-3.0.1.jar" sourcepath="M2_REPO/org/antlr/com.springsource.org.antlr/3.0.1/com.springsource.org.antlr-3.0.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/aopalliance/com.springsource.org.aopalliance/1.0.0/com.springsource.org.aopalliance-1.0.0.jar" sourcepath="M2_REPO/org/aopalliance/com.springsource.org.aopalliance/1.0.0/com.springsource.org.aopalliance-1.0.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/commons/com.springsource.org.apache.commons.logging/1.1.1/com.springsource.org.apache.commons.logging-1.1.1.jar" sourcepath="M2_REPO/org/apache/commons/com.springsource.org.apache.commons.logging/1.1.1/com.springsource.org.apache.commons.logging-1.1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.7/junit-4.7.jar" sourcepath="M2_REPO/junit/junit/4.7/junit-4.7-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/org.springframework.aop/3.0.0.M3/org.springframework.aop-3.0.0.M3.jar" sourcepath="M2_REPO/org/springframework/org.springframework.aop/3.0.0.M3/org.springframework.aop-3.0.0.M3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/org.springframework.asm/3.0.0.M3/org.springframework.asm-3.0.0.M3.jar" sourcepath="M2_REPO/org/springframework/org.springframework.asm/3.0.0.M3/org.springframework.asm-3.0.0.M3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/org.springframework.beans/3.0.0.M3/org.springframework.beans-3.0.0.M3.jar" sourcepath="M2_REPO/org/springframework/org.springframework.beans/3.0.0.M3/org.springframework.beans-3.0.0.M3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/org.springframework.context/3.0.0.M3/org.springframework.context-3.0.0.M3.jar" sourcepath="M2_REPO/org/springframework/org.springframework.context/3.0.0.M3/org.springframework.context-3.0.0.M3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/org.springframework.core/3.0.0.M3/org.springframework.core-3.0.0.M3.jar" sourcepath="M2_REPO/org/springframework/org.springframework.core/3.0.0.M3/org.springframework.core-3.0.0.M3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/org.springframework.expression/3.0.0.M3/org.springframework.expression-3.0.0.M3.jar" sourcepath="M2_REPO/org/springframework/org.springframework.expression/3.0.0.M3/org.springframework.expression-3.0.0.M3-sources.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 </classpath>
