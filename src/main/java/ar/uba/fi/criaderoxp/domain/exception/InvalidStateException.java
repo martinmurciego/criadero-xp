@@ -1,4 +1,4 @@
-package main.java.ar.uba.fi.criaderoxp.domain.exception;
+package ar.uba.fi.criaderoxp.domain.exception;
 
 /**
  * Excepción arrojada cada vez que trate de cambiarse el estado de un objeto

@@ -1,13 +1,12 @@
-package main.java.ar.uba.fi.criaderoxp.domain.model;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import java.util.Date;
-
-import main.java.ar.uba.fi.criaderoxp.domain.exception.BusinessException;
-import main.java.ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
+import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
 
 /**
  * Organizar conejos es el objetivo principal del sistema; por lo tanto, esta

@@ -1,8 +1,7 @@
-package main.java.ar.uba.fi.criaderoxp.domain.model;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import java.util.HashSet;
 import java.util.Set;
-
 
 /**
  * Conjunto de crías nacidas en un mismo parto.<br />

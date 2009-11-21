@@ -1,10 +1,9 @@
-package main.java.ar.uba.fi.criaderoxp.domain.model;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import main.java.ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
-
+import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
 
 /**
  * Representa una actividad, con sus precondiciones y acciones a ejecutar sobre

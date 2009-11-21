@@ -1,4 +1,4 @@
-package main.java.ar.uba.fi.criaderoxp.domain.exception;
+package ar.uba.fi.criaderoxp.domain.exception;
 
 /**
  * Identifica a todas las excepciones que son arrojadas durante el normal

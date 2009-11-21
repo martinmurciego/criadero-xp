@@ -1,8 +1,8 @@
-package main.java.ar.uba.fi.criaderoxp.domain.service;
+package ar.uba.fi.criaderoxp.domain.service;
 
-import main.java.ar.uba.fi.criaderoxp.domain.model.Camada;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Jaula;
+import ar.uba.fi.criaderoxp.domain.model.Camada;
+import ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Jaula;
 
 /**
  * Provee funcionalidad que involucra a varios conejos.

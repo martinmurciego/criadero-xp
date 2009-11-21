@@ -1,4 +1,4 @@
-package main.java.ar.uba.fi.criaderoxp.domain.model;
+package ar.uba.fi.criaderoxp.domain.model;
 
 /**
  * Representa estados que puede tomar un animal durante el transcurso de su
@@ -29,7 +29,7 @@ public class Estado {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null)
-				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Estado) obj)
-						.getCodigo().equals(this.getCodigo()))));
+				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Estado) obj).getCodigo().equals(this
+						.getCodigo()))));
 	}
 }

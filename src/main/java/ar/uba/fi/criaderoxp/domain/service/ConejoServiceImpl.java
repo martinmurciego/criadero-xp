@@ -1,11 +1,11 @@
-package main.java.ar.uba.fi.criaderoxp.domain.service;
+package ar.uba.fi.criaderoxp.domain.service;
 
-import main.java.ar.uba.fi.criaderoxp.domain.exception.BusinessException;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Camada;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Jaula;
-import main.java.ar.uba.fi.criaderoxp.domain.repository.CamadaRepository;
-import main.java.ar.uba.fi.criaderoxp.domain.repository.JaulaRepository;
+import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
+import ar.uba.fi.criaderoxp.domain.model.Camada;
+import ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Jaula;
+import ar.uba.fi.criaderoxp.domain.repository.CamadaRepository;
+import ar.uba.fi.criaderoxp.domain.repository.JaulaRepository;
 
 public class ConejoServiceImpl implements ConejoService {
 	private CamadaRepository camadaRepository;
@@ -30,8 +30,7 @@ public class ConejoServiceImpl implements ConejoService {
 	@Override
 	public Camada crearCamada(Conejo madre, int tamanio) {
 		if (tamanio == 0) {
-			throw new BusinessException(
-					"La camada debe tener al menos una cría.");
+			throw new BusinessException("La camada debe tener al menos una cría.");
 		}
 		madre.parir();
 		Camada camada = new Camada(madre, madre.getPareja());

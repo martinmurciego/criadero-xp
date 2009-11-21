@@ -1,22 +1,17 @@
-package test.java.ar.uba.fi.criaderoxp.domain.service;
+package ar.uba.fi.criaderoxp.domain.service;
 
 import java.util.HashSet;
 import java.util.Iterator;
-
-import main.java.ar.uba.fi.criaderoxp.domain.exception.BusinessException;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Camada;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Sexo;
-import main.java.ar.uba.fi.criaderoxp.domain.service.ConejoService;
-import main.java.ar.uba.fi.criaderoxp.domain.service.ConejoServiceImpl;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import test.java.ar.uba.fi.criaderoxp.domain.model.ConejoTest;
-import test.java.ar.uba.fi.criaderoxp.domain.repository.CamadaRepositoryTest;
-
+import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
+import ar.uba.fi.criaderoxp.domain.model.Camada;
+import ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Sexo;
+import ar.uba.fi.criaderoxp.domain.repository.CamadaRepositoryTest;
 
 /**
  * Conjunto de pruebas sobre {@link ConejoServiceImpl}
@@ -45,8 +40,7 @@ public class ConejoServiceTest {
 		// TODO (mmazzei) - Obtener del contexto con Spring.
 		this.conejoService = new ConejoServiceImpl();
 		this.camadaRepository = new CamadaRepositoryTest();
-		((ConejoServiceImpl) conejoService)
-				.setCamadaRepository(camadaRepository);
+		((ConejoServiceImpl) conejoService).setCamadaRepository(camadaRepository);
 	}
 
 	/**
@@ -142,8 +136,7 @@ public class ConejoServiceTest {
 		// Obtengo la camada creada antes y verifico que todas las crías sean
 		// diferentes y se encuentren entre las que realmente la componían
 		// (guardadas en criasAux).
-		Camada camadaObtenida = conejoService.getCamada(criasAux.iterator()
-				.next());
+		Camada camadaObtenida = conejoService.getCamada(criasAux.iterator().next());
 		Iterator<Conejo> iterator = camadaObtenida.getCrias().iterator();
 		Conejo cria1 = iterator.next();
 		Conejo cria2;

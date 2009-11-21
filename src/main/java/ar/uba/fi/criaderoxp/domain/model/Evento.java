@@ -1,4 +1,4 @@
-package main.java.ar.uba.fi.criaderoxp.domain.model;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import java.util.Date;
 

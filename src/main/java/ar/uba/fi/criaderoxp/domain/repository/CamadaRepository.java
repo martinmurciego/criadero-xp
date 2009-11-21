@@ -1,7 +1,7 @@
-package main.java.ar.uba.fi.criaderoxp.domain.repository;
+package ar.uba.fi.criaderoxp.domain.repository;
 
-import main.java.ar.uba.fi.criaderoxp.domain.model.Camada;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Camada;
+import ar.uba.fi.criaderoxp.domain.model.Conejo;
 
 /**
  * Encargada de proveer acceso a las camadas.

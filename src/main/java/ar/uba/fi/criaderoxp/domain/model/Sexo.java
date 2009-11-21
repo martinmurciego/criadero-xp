@@ -1,4 +1,4 @@
-package main.java.ar.uba.fi.criaderoxp.domain.model;
+package ar.uba.fi.criaderoxp.domain.model;
 
 /**
  * Indica si un individuo es femenino o masculino.
@@ -32,7 +32,7 @@ public class Sexo {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null)
-				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Sexo) obj)
-						.getCodigo().equals(this.getCodigo()))));
+				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Sexo) obj).getCodigo().equals(this
+						.getCodigo()))));
 	}
 }

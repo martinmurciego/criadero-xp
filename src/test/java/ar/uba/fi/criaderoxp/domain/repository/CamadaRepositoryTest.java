@@ -1,12 +1,11 @@
-package test.java.ar.uba.fi.criaderoxp.domain.repository;
+package ar.uba.fi.criaderoxp.domain.repository;
 
 import java.util.HashMap;
 
 import org.junit.Test;
 
-import main.java.ar.uba.fi.criaderoxp.domain.model.Camada;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
-import main.java.ar.uba.fi.criaderoxp.domain.repository.CamadaRepository;
+import ar.uba.fi.criaderoxp.domain.model.Camada;
+import ar.uba.fi.criaderoxp.domain.model.Conejo;
 
 public class CamadaRepositoryTest implements CamadaRepository {
 	private HashMap<Conejo, Camada> datosPrueba = new HashMap<Conejo, Camada>();

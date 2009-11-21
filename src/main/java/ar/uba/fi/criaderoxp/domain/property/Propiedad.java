@@ -1,4 +1,4 @@
-package main.java.ar.uba.fi.criaderoxp.domain.property;
+package ar.uba.fi.criaderoxp.domain.property;
 
 /**
  * Algunos objetos tienen varias propiedades que se asignan dinámicamente, según

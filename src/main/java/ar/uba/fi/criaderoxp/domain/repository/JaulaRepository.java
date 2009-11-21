@@ -1,7 +1,7 @@
-package main.java.ar.uba.fi.criaderoxp.domain.repository;
+package ar.uba.fi.criaderoxp.domain.repository;
 
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Jaula;
+import ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Jaula;
 
 /**
  * Encargada de proveer acceso a las jaulas.

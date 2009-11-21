@@ -1,4 +1,4 @@
-package test.java.ar.uba.fi.criaderoxp.domain.service;
+package ar.uba.fi.criaderoxp.domain.service;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

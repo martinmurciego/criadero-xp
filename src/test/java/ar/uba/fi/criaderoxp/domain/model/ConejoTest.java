@@ -1,12 +1,4 @@
-package test.java.ar.uba.fi.criaderoxp.domain.model;
-
-import main.java.ar.uba.fi.criaderoxp.domain.exception.BusinessException;
-import main.java.ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Activity;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Conejo;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Estado;
-import main.java.ar.uba.fi.criaderoxp.domain.model.Sexo;
-import main.java.ar.uba.fi.criaderoxp.domain.model.TipoEvento;
+package ar.uba.fi.criaderoxp.domain.model;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,6 +6,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
+import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
 
 /**
  * Conjunto de pruebas sobre {@link Conejo}.
@@ -23,11 +17,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ConejoTest {
 	private Conejo conejo;
-	private BeanFactory activities;
+	private BeanFactory activities = new ClassPathXmlApplicationContext("activities.xml");
 
 	@Before
 	public void setUp() throws Exception {
-		activities = new ClassPathXmlApplicationContext("activities.xml");
 		this.conejo = new Conejo();
 		conejo.nacer();
 	}
