@@ -18,7 +18,7 @@ import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
  * @category Aggregate Root
  */
 public class Conejo {
-	BeanFactory activities = new ClassPathXmlApplicationContext("testingContext.xml");
+	BeanFactory activities = new ClassPathXmlApplicationContext("applicationContext.xml");
 	private Date fechaNacimiento;
 	private Estado estado = activities.getBean("nullObjectEstado", Estado.class);
 	private Sexo sexo;

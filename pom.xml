@@ -27,6 +27,9 @@
 			<url>http://repository.springsource.com/maven/bundles/milestone</url>
 		</repository>
 		<!--
+			<repository> <id>repository.jboss.org</id> <name>SpringSource
+			Enterprise Bundle Repository - External Bundle Milestones</name>
+			<url>http://repository.jboss.org/maven2</url> </repository>
 		-->
 	</repositories>
 
@@ -55,6 +58,7 @@
 		<spring.version>3.0.0.M3</spring.version>
 	</properties>
 
+	<!-- INICIO: DEPENDENCIAS MÍNIMAS PARA SPRING -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -81,13 +85,51 @@
 			<artifactId>org.springframework.expression</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<!-- FIN: DEPENDENCIAS MÍNIMAS PARA SPRING -->
 
+		<!-- INICIO: DEPENDENCIAS MÍNIMAS PARA PERSISTENCIA CON JPA -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.orm</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.7.ga</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.5.9-RC0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.9-RC0</version>
+		</dependency>
+		<!-- FIN: DEPENDENCIAS MÍNIMAS PARA PERSISTENCIA CON JPA -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
