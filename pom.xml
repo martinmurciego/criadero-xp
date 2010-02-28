@@ -5,15 +5,11 @@
 	<artifactId>criadero-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0</version>
-	<name>Multi-Spring Chapter Simple Parent Project</name>
+	<name>criadero-xp Parent</name>
 
 	<modules>
-		<!--
-		<module>criadero-command</module>
-		<module>criadero-model</module>
-		<module>criadero-persist</module>
-		-->
 		<module>criadero-xp</module>
+		<module>criadero-webapp</module>
 	</modules>
 
 
