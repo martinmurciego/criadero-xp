@@ -2,12 +2,14 @@ package ar.uba.fi.criaderoxp.domain.model;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
+import ar.uba.fi.criaderoxp.domain.repository.SexoRepository;
+import ar.uba.fi.criaderoxp.domain.security.Usuario;
+import ar.uba.fi.criaderoxp.domain.util.Context;
 
 /**
  * Conjunto de pruebas sobre {@link Conejo}.
@@ -17,12 +19,17 @@ import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
  */
 public class ConejoTest {
 	private Conejo conejo;
-	private BeanFactory activities = new ClassPathXmlApplicationContext("activities.xml");
+	private Usuario usuario;
+
+	@BeforeClass
+	public static void setUpClass() {
+		Context.getInstance().setApplicationContext("testingContext.xml");
+	}
 
 	@Before
 	public void setUp() throws Exception {
 		this.conejo = new Conejo();
-		conejo.nacer();
+		conejo.nacer(null);
 	}
 
 	/**
@@ -31,7 +38,7 @@ public class ConejoTest {
 	@Test(expected = InvalidStateException.class)
 	public void soloNaceUnaVez() {
 		// Aquí debería fallar
-		conejo.nacer();
+		conejo.nacer(null);
 	}
 
 	/**
@@ -39,7 +46,7 @@ public class ConejoTest {
 	 */
 	@Test
 	public void esGazapoAlNacer() {
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("gazapo"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("gazapo", Estado.class));
 	}
 
 	/**
@@ -48,7 +55,7 @@ public class ConejoTest {
 	@Test
 	public void siEsGazapoPuedeDestetarse() {
 		conejo.destetar();
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("engorde"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("engorde", Estado.class));
 	}
 
 	/**
@@ -57,8 +64,8 @@ public class ConejoTest {
 	@Test
 	public void enEngordePuedePasarAReproductorAlSexarse() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, true);
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
 	}
 
 	/**
@@ -67,8 +74,8 @@ public class ConejoTest {
 	@Test
 	public void enEngordePuedePasarAProductorAlSexarse() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, false);
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("productor"));
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), false);
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("productor", Estado.class));
 	}
 
 	/**
@@ -77,9 +84,9 @@ public class ConejoTest {
 	@Test
 	public void enEsperaPuedeJuntarse() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 		conejo.juntar(new Conejo());
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("juntado"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("juntado", Estado.class));
 	}
 
 	/**
@@ -88,13 +95,13 @@ public class ConejoTest {
 	@Test(expected = BusinessException.class)
 	public void noPuedeJuntarseConMismoSexo() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 
 		// Obtengo un conejo del mismo sexo para comprobar
 		Conejo conejo2 = new Conejo();
-		conejo2.nacer();
+		conejo2.nacer(null);
 		conejo2.destetar();
-		conejo2.sexar(Sexo.MACHO, true);
+		conejo2.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 
 		conejo.juntar(conejo2);
 	}
@@ -105,13 +112,13 @@ public class ConejoTest {
 	@Test
 	public void puedeObtenerseLaParejaDeConejoJuntado() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 
 		// Creo un conejo de otro sexo para que sea su pareja
 		Conejo conejo2 = new Conejo();
-		conejo2.nacer();
+		conejo2.nacer(null);
 		conejo2.destetar();
-		conejo2.sexar(Sexo.HEMBRA, true);
+		conejo2.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getHembra(), true);
 
 		conejo.juntar(conejo2);
 
@@ -124,12 +131,12 @@ public class ConejoTest {
 	@Test
 	public void enEngordePuedeSacrificarseYLuegoSerVendido() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, false);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), false);
 		conejo.sacrificar();
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("sacrificado"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("sacrificado", Estado.class));
 
 		conejo.vender();
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("vendido"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("vendido", Estado.class));
 	}
 
 	/**
@@ -138,49 +145,46 @@ public class ConejoTest {
 	@Test
 	public void machoQuedaEnEsperaLuegoDeMontura() {
 		conejo.destetar();
-		conejo.sexar(Sexo.MACHO, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
 	}
 
 	/**
-	 * Verifica que una hembra montada a la que diagnosticó que no quedó
-	 * preñada, quede en espera.
+	 * Verifica que una hembra montada a la que diagnosticó que no quedó preñada, quede en espera.
 	 */
 	@Test
 	public void hembraMontadaYNoPreniadaQuedaEnEspera() {
 		conejo.destetar();
-		conejo.sexar(Sexo.HEMBRA, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getHembra(), true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(false);
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
 	}
 
 	/**
-	 * Verifica que una hembra que estuvo preñada quede amamantando a su cría al
-	 * parir.
+	 * Verifica que una hembra que estuvo preñada quede amamantando a su cría al parir.
 	 */
 	@Test
 	public void hembraAmamantaAlParir() {
 		conejo.destetar();
-		conejo.sexar(Sexo.HEMBRA, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getHembra(), true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(true);
 		conejo.parir();
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("amamantando"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("amamantando", Estado.class));
 	}
 
 	/**
-	 * Verifica que una hembra que está amamantando a su cría pueda preñarse
-	 * nuevamente.
+	 * Verifica que una hembra que está amamantando a su cría pueda preñarse nuevamente.
 	 */
 	@Test
 	public void hembraAmamantandoPuedePreniarse() {
 		conejo.destetar();
-		conejo.sexar(Sexo.HEMBRA, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getHembra(), true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(true);
@@ -188,23 +192,22 @@ public class ConejoTest {
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(true);
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("preniado"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("preniado", Estado.class));
 	}
 
 	/**
-	 * Verifica que una hembra a la que se destetan a los hijos pasa a estar en
-	 * espera.
+	 * Verifica que una hembra a la que se destetan a los hijos pasa a estar en espera.
 	 */
 	@Test
 	public void hembraDestetadaPasaAEnEspera() {
 		conejo.destetar();
-		conejo.sexar(Sexo.HEMBRA, true);
+		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getHembra(), true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(true);
 		conejo.parir();
 		conejo.destetarCrias();
-		Assert.assertEquals(conejo.getEstado(), activities.getBean("enEspera"));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
 	}
 
 	/**
@@ -229,8 +232,7 @@ public class ConejoTest {
 	}
 
 	/**
-	 * Verifica que se registran tantas actividades como haya ejecutado en el
-	 * conejo.
+	 * Verifica que se registran tantas actividades como haya ejecutado en el conejo.
 	 */
 	@Test
 	public void seRegistranTodasLasActividadesEjecutadas() {
@@ -245,16 +247,18 @@ public class ConejoTest {
 	}
 
 	/**
-	 * Verifica que se registran los eventos adecuados para la actividad que se
-	 * ejecuta.
+	 * Verifica que se registran los eventos adecuados para la actividad que se ejecuta.
 	 */
 	@Test
 	public void seRegistranLosEventosAdecuadosParaLaActividad() {
-		TipoEvento tipoCorrecto = activities.getBean("muerte", Activity.class).getTipoEvento();
+		TipoEvento tipoCorrecto = Context.getInstance().getBean("muerte", Activity.class).getTipoEvento();
 		conejo.destetar();
 		conejo.enfermar();
 		conejo.morir();
 		TipoEvento tipoRegistrado = conejo.getRegistro().getUltimoEvento().getTipo();
+
+		usuario = new Usuario();
+		usuario.setUsername("pepe");
 
 		// Compruebo que se hayan registrado tres eventos
 		Assert.assertEquals(tipoCorrecto, tipoRegistrado);

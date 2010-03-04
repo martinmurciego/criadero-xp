@@ -6,91 +6,119 @@
 	<!-- TIPOS DE EVENTO -->
 	<bean id="te_nacimiento" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="nacimiento" />
+		<property name="descripcion" value="Nacimiento" />
 	</bean>
 	<bean id="te_destete" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="destete" />
+		<property name="descripcion" value="Destete" />
 	</bean>
 	<bean id="te_sexado" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="sexado" />
+		<property name="descripcion" value="Sexado" />
 	</bean>
 	<bean id="te_junta" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="junta" />
+		<property name="descripcion" value="Junta" />
 	</bean>
 	<bean id="te_montura" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="montura" />
+		<property name="descripcion" value="Montura" />
 	</bean>
 	<bean id="te_diagnostico" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="diagnostico" />
+		<property name="descripcion" value="Diagnóstico de preñez" />
 	</bean>
 	<bean id="te_parto" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="parto" />
+		<property name="descripcion" value="Parto" />
 	</bean>
 	<bean id="te_desteteCrias" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="desteteCrias" />
+		<property name="descripcion" value="Destete de crías" />
 	</bean>
 	<bean id="te_mudanza" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="mudanza" />
+		<property name="descripcion" value="Mudanza" />
 	</bean>
 	<bean id="te_sacrificio" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="sacrificio" />
+		<property name="descripcion" value="Sacrificio" />
 	</bean>
 	<bean id="te_venta" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="venta" />
+		<property name="descripcion" value="Venta" />
 	</bean>
 	<bean id="te_enfermedad" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="enfermedad" />
+		<property name="descripcion" value="Enfermedad" />
 	</bean>
 	<bean id="te_cura" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="cura" />
+		<property name="descripcion" value="Cura" />
 	</bean>
 	<bean id="te_muerte" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="muerte" />
+		<property name="descripcion" value="Muerte" />
 	</bean>
 
 	<!-- ESTADOS -->
 	<bean id="gazapo" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Gazapo" />
+		<property name="descripcion" value="Gazapo" />
 	</bean>
 	<bean id="engorde" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Engorde" />
+		<property name="descripcion" value="Engorde" />
 	</bean>
 	<bean id="productor" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Productor" />
+		<property name="descripcion" value="Productor" />
 	</bean>
 	<bean id="enEspera" class="ar.uba.fi.criaderoxp.domain.model.Estado">
-		<constructor-arg value="En espera" />
+		<constructor-arg value="EnEspera" />
+		<property name="descripcion" value="En espera" />
 	</bean>
 	<bean id="juntado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Juntado" />
+		<property name="descripcion" value="Juntado" />
 	</bean>
 	<bean id="montado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Montado" />
+		<property name="descripcion" value="Montado" />
 	</bean>
 	<bean id="preniado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Preniado" />
+		<property name="descripcion" value="Preniado" />
 	</bean>
 	<bean id="amamantando" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Amamantando" />
+		<property name="descripcion" value="Amamantando" />
 	</bean>
 	<bean id="sacrificado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Sacrificado" />
+		<property name="descripcion" value="Sacrificado" />
 	</bean>
 	<bean id="vendido" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Vendido" />
+		<property name="descripcion" value="Vendido" />
 	</bean>
 	<bean id="enfermo" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Enfermo" />
+		<property name="descripcion" value="Enfermo" />
 	</bean>
 	<bean id="muerto" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Muerto" />
+		<property name="descripcion" value="Muerto" />
 	</bean>
 	<bean id="nullObjectEstado" class="ar.uba.fi.criaderoxp.domain.model.Estado">
 		<constructor-arg value="Null object" />
+		<property name="descripcion" value="Ninguno" />
 	</bean>
 
 	<!-- ACTIVIDADES -->
 	<bean id="nacimiento" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Nacimiento" />
+		<property name="descripcion" value="Nacimiento" />
 		<property name="tipoEvento" ref="te_nacimiento" />
 		<property name="requisitos">
 			<set>
@@ -101,6 +129,7 @@
 	</bean>
 	<bean id="destete" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Destete" />
+		<property name="descripcion" value="Destete" />
 		<property name="tipoEvento" ref="te_destete" />
 		<property name="requisitos">
 			<set>
@@ -111,7 +140,8 @@
 	</bean>
 
 	<bean id="sexadoProductor" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Sexado productor" />
+		<constructor-arg value="SexadoProductor" />
+		<property name="descripcion" value="Sexado productor" />
 		<property name="tipoEvento" ref="te_sexado" />
 		<property name="requisitos">
 			<set>
@@ -122,7 +152,8 @@
 	</bean>
 
 	<bean id="sexadoReproductor" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Sexado reproductor" />
+		<constructor-arg value="SexadoReproductor" />
+		<property name="descripcion" value="Sexado reproductor" />
 		<property name="tipoEvento" ref="te_sexado" />
 		<property name="requisitos">
 			<set>
@@ -134,6 +165,7 @@
 
 	<bean id="junta" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Junta" />
+		<property name="descripcion" value="Junta" />
 		<property name="tipoEvento" ref="te_junta" />
 		<property name="requisitos">
 			<set>
@@ -145,7 +177,8 @@
 	</bean>
 
 	<bean id="monturaMacho" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Montura macho" />
+		<constructor-arg value="MonturaMacho" />
+		<property name="descripcion" value="Montura" />
 		<property name="tipoEvento" ref="te_montura" />
 		<property name="requisitos">
 			<set>
@@ -156,7 +189,8 @@
 	</bean>
 
 	<bean id="monturaHembra" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Montura hembra" />
+		<constructor-arg value="MonturaHembra" />
+		<property name="descripcion" value="Montura" />
 		<property name="tipoEvento" ref="te_montura" />
 		<property name="requisitos">
 			<set>
@@ -167,7 +201,8 @@
 	</bean>
 
 	<bean id="diagnosticoPreniada" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Diagnóstico preñada" />
+		<constructor-arg value="DiagnósticoPreñada" />
+		<property name="descripcion" value="Diagnóstico preñada" />
 		<property name="tipoEvento" ref="te_diagnostico" />
 		<property name="requisitos">
 			<set>
@@ -178,7 +213,8 @@
 	</bean>
 
 	<bean id="diagnosticoNoPreniada" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Diagnóstico no preñada" />
+		<constructor-arg value="DiagnósticoNoPreñada" />
+		<property name="descripcion" value="Diagnóstico no preñada" />
 		<property name="tipoEvento" ref="te_diagnostico" />
 		<property name="requisitos">
 			<set>
@@ -190,6 +226,7 @@
 
 	<bean id="parto" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Parto" />
+		<property name="descripcion" value="Parto" />
 		<property name="tipoEvento" ref="te_parto" />
 		<property name="requisitos">
 			<set>
@@ -200,7 +237,8 @@
 	</bean>
 
 	<bean id="desteteCrias" class="ar.uba.fi.criaderoxp.domain.model.Activity">
-		<constructor-arg value="Destete crías" />
+		<constructor-arg value="DesteteCrías" />
+		<property name="descripcion" value="Destete de las crías" />
 		<property name="tipoEvento" ref="te_desteteCrias" />
 		<property name="requisitos">
 			<set>
@@ -212,6 +250,7 @@
 
 	<bean id="mudanza" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Mudanza" />
+		<property name="descripcion" value="Mudanza" />
 		<property name="tipoEvento" ref="te_mudanza" />
 		<property name="requisitos">
 			<set>
@@ -230,6 +269,7 @@
 
 	<bean id="sacrificio" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Sacrificio" />
+		<property name="descripcion" value="Sacrificio" />
 		<property name="tipoEvento" ref="te_sacrificio" />
 		<property name="requisitos">
 			<set>
@@ -241,6 +281,7 @@
 
 	<bean id="venta" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Venta" />
+		<property name="descripcion" value="Venta" />
 		<property name="tipoEvento" ref="te_venta" />
 		<property name="requisitos">
 			<set>
@@ -260,6 +301,7 @@
 
 	<bean id="enfermedad" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Enfermedad" />
+		<property name="descripcion" value="Enfermedad" />
 		<property name="tipoEvento" ref="te_enfermedad" />
 		<property name="requisitos">
 			<set>
@@ -278,6 +320,7 @@
 
 	<bean id="cura" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Cura" />
+		<property name="descripcion" value="Cura" />
 		<property name="tipoEvento" ref="te_cura" />
 		<property name="requisitos">
 			<set>
@@ -288,6 +331,7 @@
 
 	<bean id="muerte" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Muerte" />
+		<property name="descripcion" value="Muerte" />
 		<property name="tipoEvento" ref="te_muerte" />
 		<property name="requisitos">
 			<set>
@@ -303,5 +347,80 @@
 			</set>
 		</property>
 		<property name="destino" ref="muerto" />
+	</bean>
+
+	<bean id="estadosList" class="ar.uba.fi.criaderoxp.BeanList">
+		<property name="beans">
+			<set>
+				<ref bean="gazapo" />
+				<ref bean="engorde" />
+				<ref bean="productor" />
+				<ref bean="enEspera" />
+				<ref bean="juntado" />
+				<ref bean="montado" />
+				<ref bean="preniado" />
+				<ref bean="amamantando" />
+				<ref bean="sacrificado" />
+				<ref bean="vendido" />
+				<ref bean="enfermo" />
+				<ref bean="muerto" />
+				<ref bean="nullObjectEstado" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="tiposEventoList" class="ar.uba.fi.criaderoxp.BeanList">
+		<property name="beans">
+			<set>
+				<ref bean="te_nacimiento" />
+				<ref bean="te_destete" />
+				<ref bean="te_sexado" />
+				<ref bean="te_junta" />
+				<ref bean="te_montura" />
+				<ref bean="te_diagnostico" />
+				<ref bean="te_parto" />
+				<ref bean="te_desteteCrias" />
+				<ref bean="te_mudanza" />
+				<ref bean="te_sacrificio" />
+				<ref bean="te_venta" />
+				<ref bean="te_enfermedad" />
+				<ref bean="te_cura" />
+				<ref bean="te_muerte" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="activitiesList" class="ar.uba.fi.criaderoxp.BeanList">
+		<property name="beans">
+			<set>
+				<ref bean="nacimiento" />
+				<ref bean="destete" />
+				<ref bean="sexadoProductor" />
+				<ref bean="sexadoReproductor" />
+				<ref bean="junta" />
+				<ref bean="monturaMacho" />
+				<ref bean="monturaHembra" />
+				<ref bean="diagnosticoPreniada" />
+				<ref bean="diagnosticoNoPreniada" />
+				<ref bean="parto" />
+				<ref bean="desteteCrias" />
+				<ref bean="mudanza" />
+				<ref bean="sacrificio" />
+				<ref bean="venta" />
+				<ref bean="enfermedad" />
+				<ref bean="cura" />
+				<ref bean="muerte" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="activitiesXMLList" class="ar.uba.fi.criaderoxp.BeanList">
+		<property name="beansList">
+			<set>
+				<ref bean="estadosList" />
+				<ref bean="tiposEventoList" />
+				<ref bean="activitiesList" />
+			</set>
+		</property>
 	</bean>
 </beans>

@@ -47,6 +47,7 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+
 			<!--
 				<plugin> <groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId> <configuration>
@@ -56,6 +57,24 @@
 				<target>1.5</target> <executable>${JAVA_HOME}/bin/javac</executable>
 				</configuration> </plugin>
 			-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>ar.uba.fi.criaderoxp.RunInitialLoad</mainClass>
+					<arguments>
+						<argument>argument1</argument>
+					</arguments>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

@@ -7,35 +7,23 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-	<import resource="activities.xml" />
-	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<!--  -->
+	<import resource="persistenceConfig.xml" />
+	<!--  -->
 
-	<!-- Local DataSource that works in any environment -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.postgresql.Driver"/>
-		<property name="url" value="jdbc:postgresql://localhost:5432/criaderoxp"/>
-		<property name="username" value="criadero"/>
-		<property name="password" value="criadero"/>
-	</bean>
+	<!-- INICIO: Repositories -->
+	<bean id="sexoRepository" class="ar.uba.fi.criaderoxp.domain.repository.SexoRepositoryImpl" />
+	<bean id="activityRepository" class="ar.uba.fi.criaderoxp.domain.repository.ActivityRepositoryImpl" />
+	<bean id="estadoRepository" class="ar.uba.fi.criaderoxp.domain.repository.EstadoRepositoryImpl" />
+	<!-- FIN: Repositories -->
 
-	<!-- JPA EntityManagerFactory -->
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="jpaVendorAdapter">
-			<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true"/>
-				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect"/>
-			</bean>
-		</property>
-	</bean>
-
-	<!-- JPA TransactionManager -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory"/>
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-
-	<!-- ver en http://forum.springsource.org/showthread.php?t=39192 donde recomiendan cambiar esto -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- INICIO: Capa de servicios -->
+	<!--
+		<bean id="conejoService"
+		class="ar.uba.fi.criaderoxp.domain.service.ConejoServiceImpl" /> <bean
+		id="usuarioService"
+		class="ar.uba.fi.criaderoxp.domain.service.UsuarioServiceImpl" />
+	-->
+	<!-- FIN: Capa de servicios -->
 </beans>
 

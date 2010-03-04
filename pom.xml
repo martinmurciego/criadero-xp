@@ -8,7 +8,7 @@
 	<name>criadero-xp Parent</name>
 
 	<modules>
-		<module>criadero-xp</module>
+		<module>criadero-model</module>
 		<module>criadero-webapp</module>
 	</modules>
 

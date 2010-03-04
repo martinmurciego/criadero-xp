@@ -1,17 +1,17 @@
 package ar.uba.fi.criaderoxp.domain.service;
 
-import java.util.HashSet;
 import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.model.Camada;
 import ar.uba.fi.criaderoxp.domain.model.Conejo;
-import ar.uba.fi.criaderoxp.domain.model.Sexo;
-import ar.uba.fi.criaderoxp.domain.repository.CamadaRepositoryTest;
+import ar.uba.fi.criaderoxp.domain.repository.SexoRepository;
+import ar.uba.fi.criaderoxp.domain.util.Context;
 
 /**
  * Conjunto de pruebas sobre {@link ConejoServiceImpl}
@@ -22,30 +22,29 @@ import ar.uba.fi.criaderoxp.domain.repository.CamadaRepositoryTest;
 public class ConejoServiceTest {
 	private Conejo hembra;
 	private Conejo macho;
-	private ConejoService conejoService;
-	private CamadaRepositoryTest camadaRepository;
+	private static ConejoService conejoService;
+
+	@BeforeClass
+	public static void setUpClass() {
+		Context.getInstance().setApplicationContext("testingContext.xml");
+		conejoService = Context.getInstance().getBean("conejoService", ConejoService.class);
+	}
 
 	@Before
 	public void setUp() throws Exception {
 		this.hembra = new Conejo();
-		hembra.nacer();
+		hembra.nacer(null);
 		hembra.destetar();
-		hembra.sexar(Sexo.HEMBRA, true);
+		hembra.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getHembra(), true);
 
 		this.macho = new Conejo();
-		macho.nacer();
+		macho.nacer(null);
 		macho.destetar();
-		macho.sexar(Sexo.MACHO, true);
-
-		// TODO (mmazzei) - Obtener del contexto con Spring.
-		this.conejoService = new ConejoServiceImpl();
-		this.camadaRepository = new CamadaRepositoryTest();
-		((ConejoServiceImpl) conejoService).setCamadaRepository(camadaRepository);
+		macho.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 	}
 
 	/**
-	 * Verifica que luego de juntar dos conejos, ambos sean detectados como
-	 * pareja del otro.
+	 * Verifica que luego de juntar dos conejos, ambos sean detectados como pareja del otro.
 	 */
 	@Test
 	public void conejosJuntadosSonParejaUnoDelOtro() {
@@ -102,14 +101,9 @@ public class ConejoServiceTest {
 		int cantidadCrias = 1;
 		Camada camada = conejoService.crearCamada(hembra, cantidadCrias);
 
-		// Guardo los datos en el repository falso que utiliza el servicio
-		for (Conejo conejo : camada.getCrias()) {
-			this.camadaRepository.addTestData(conejo, camada);
-		}
-
 		// Obtengo la camada creada antes
 		Conejo cria = camada.getCrias().iterator().next();
-		Camada camadaObtenida = conejoService.getCamada(cria);
+		Camada camadaObtenida = cria.getCamada();
 		Assert.assertEquals(camadaObtenida.getMadre(), hembra);
 	}
 
@@ -124,28 +118,15 @@ public class ConejoServiceTest {
 		int cantidadCrias = 3;
 		Camada camada = conejoService.crearCamada(hembra, cantidadCrias);
 
-		// Aquí guardo los hermanos de la camada para luego comparar.
-		HashSet<Conejo> criasAux = new HashSet<Conejo>();
-
-		// Guardo los datos en el repository falso que utiliza el servicio
-		for (Conejo conejo : camada.getCrias()) {
-			this.camadaRepository.addTestData(conejo, camada);
-			criasAux.add(conejo);
-		}
-
-		// Obtengo la camada creada antes y verifico que todas las crías sean
-		// diferentes y se encuentren entre las que realmente la componían
-		// (guardadas en criasAux).
-		Camada camadaObtenida = conejoService.getCamada(criasAux.iterator().next());
-		Iterator<Conejo> iterator = camadaObtenida.getCrias().iterator();
+		// Verifico que todas las crías sean diferentes y correspondan a la camada.
+		Iterator<Conejo> iterator = camada.getCrias().iterator();
 		Conejo cria1 = iterator.next();
 		Conejo cria2;
 		do {
-			Assert.assertTrue(criasAux.contains(cria1));
+			Assert.assertEquals(camada, cria1.getCamada());
 			if (iterator.hasNext()) {
 				cria2 = iterator.next();
 				Assert.assertFalse(cria1 == cria2);
-				Assert.assertTrue(criasAux.contains(cria2));
 			}
 
 		} while (iterator.hasNext());

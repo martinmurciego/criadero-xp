@@ -3,15 +3,27 @@ package ar.uba.fi.criaderoxp.domain.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 
 /**
- * Todos los individuos vivos del criadero habitan una jaula. Cada jaula puede
- * tener ninguno, uno o varios individuos.
+ * Todos los individuos vivos del criadero habitan una jaula. Cada jaula puede tener ninguno, uno o
+ * varios individuos.
  */
+@Entity
 public class Jaula {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
 	private String codigo;
 	private Integer capacidad;
+
+	@OneToMany
 	private Set<Conejo> conejos;
 
 	public Jaula(String codigo) {
@@ -51,4 +63,8 @@ public class Jaula {
 		this.conejos.add(conejo);
 	}
 
+	/** Quita al conejo de la jaula. */
+	public void remove(Conejo conejo) {
+		this.conejos.remove(conejo);
+	}
 }

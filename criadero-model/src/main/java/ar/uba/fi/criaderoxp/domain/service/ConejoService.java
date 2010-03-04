@@ -2,7 +2,6 @@ package ar.uba.fi.criaderoxp.domain.service;
 
 import ar.uba.fi.criaderoxp.domain.model.Camada;
 import ar.uba.fi.criaderoxp.domain.model.Conejo;
-import ar.uba.fi.criaderoxp.domain.model.Jaula;
 
 /**
  * Provee funcionalidad que involucra a varios conejos.
@@ -16,9 +15,8 @@ public interface ConejoService {
 	void crearPareja(Conejo hembra, Conejo macho);
 
 	/**
-	 * La montura es la acción por la cual una pareja de conejos procrea,
-	 * quedando el macho preparado para otra pareja y la hembra en espera del
-	 * diagnóstico.
+	 * La montura es la acción por la cual una pareja de conejos procrea, quedando el macho
+	 * preparado para otra pareja y la hembra en espera del diagnóstico.
 	 * 
 	 * @param hembra
 	 *            Coneja que fue montada.
@@ -26,8 +24,8 @@ public interface ConejoService {
 	public void montar(Conejo hembra);
 
 	/**
-	 * Provoca el parto de una coneja y crea una camada de gazapos cuyos padres
-	 * son esta hembra y su pareja.
+	 * Provoca el parto de una coneja y crea una camada de gazapos cuyos padres son esta hembra y su
+	 * pareja.
 	 * 
 	 * @param madre
 	 *            Debe ser una hembra, será la madre de la camada.
@@ -36,10 +34,4 @@ public interface ConejoService {
 	 * @return Una nueva camada con la cantidad de crías indicada.
 	 */
 	public Camada crearCamada(Conejo madre, int tamanio);
-
-	/** @return La camada en que nació el conejo. */
-	public Camada getCamada(Conejo conejo);
-
-	/** @return La jaula en que se encuentra el conejo. */
-	public Jaula getJaula(Conejo conejo);
 }

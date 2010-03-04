@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="macho" class="ar.uba.fi.criaderoxp.domain.model.Sexo">
+		<constructor-arg value="macho" />
+		<property name="descripcion" value="Macho" />
+	</bean>
+	<bean id="hembra" class="ar.uba.fi.criaderoxp.domain.model.Sexo">
+		<constructor-arg value="hembra" />
+		<property name="descripcion" value="Hembra" />
+	</bean>
+
+	<bean id="sexosXMLList" class="ar.uba.fi.criaderoxp.BeanList">
+		<property name="beans">
+			<set>
+				<ref bean="macho" />
+				<ref bean="hembra" />
+			</set>
+		</property>
+	</bean>
+</beans>
