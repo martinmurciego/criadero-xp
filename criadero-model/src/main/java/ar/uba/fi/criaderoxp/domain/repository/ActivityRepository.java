@@ -11,6 +11,8 @@ import ar.uba.fi.criaderoxp.domain.model.Activity;
 public interface ActivityRepository {
 	public Activity getNacimiento();
 
+	public Activity getCompra();
+
 	public Activity getMuerte();
 
 	public Activity getCura();

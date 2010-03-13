@@ -11,6 +11,11 @@ import ar.uba.fi.criaderoxp.domain.util.Context;
  */
 public class ActivityRepositoryDummy implements ActivityRepository {
 	@Override
+	public Activity getCompra() {
+		return Context.getInstance().getBean("compra", Activity.class);
+	}
+
+	@Override
 	public Activity getCura() {
 		return Context.getInstance().getBean("cura", Activity.class);
 	}

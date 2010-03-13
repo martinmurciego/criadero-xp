@@ -71,7 +71,12 @@ public class Activity {
 		this.tipoEvento = tipoEvento;
 	}
 
-	/** Configura el estado al que deve realizarse la transición. */
+	/** @return El estado al que se realiza la transición. */
+	public Estado getDestino() {
+		return this.destino;
+	}
+
+	/** Configura el estado al que debe realizarse la transición. */
 	public void setDestino(Estado destino) {
 		this.destino = destino;
 	}

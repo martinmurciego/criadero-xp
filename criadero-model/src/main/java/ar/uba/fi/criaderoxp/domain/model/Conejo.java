@@ -139,6 +139,22 @@ public class Conejo {
 	}
 
 	/**
+	 * Utilizado cuando se adquiere un conejo vivo y sano.
+	 * @param destino Estado en el que se compró el animal.
+	 * @throws InvalidStateException
+	 */
+	public void comprar(Estado destino) {
+		Activity compra = Context.getInstance().getBean("activityRepository", ActivityRepository.class).getCompra();
+
+		// Esta chanchada se implementó de ese modo para evitar un refactor más importante del workflow.
+		// TODO (mmazzei) - Emprolijar.
+		Estado estadoAux = compra.getDestino();
+		compra.setDestino(destino);
+		compra.execute(this);
+		compra.setDestino(estadoAux);
+	}
+
+	/**
 	 * Desteta al conejo, dejándolo en engorde.
 	 * 
 	 * @throws InvalidStateException

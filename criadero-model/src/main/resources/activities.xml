@@ -8,6 +8,10 @@
 		<constructor-arg value="nacimiento" />
 		<property name="descripcion" value="Nacimiento" />
 	</bean>
+	<bean id="te_compra" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
+		<constructor-arg value="compra" />
+		<property name="descripcion" value="Nacimiento" />
+	</bean>
 	<bean id="te_destete" class="ar.uba.fi.criaderoxp.domain.model.TipoEvento">
 		<constructor-arg value="destete" />
 		<property name="descripcion" value="Destete" />
@@ -127,6 +131,19 @@
 		</property>
 		<property name="destino" ref="gazapo" />
 	</bean>
+
+	<bean id="compra" class="ar.uba.fi.criaderoxp.domain.model.Activity">
+		<constructor-arg value="Compra" />
+		<property name="descripcion" value="Compra" />
+		<property name="tipoEvento" ref="te_compra" />
+		<property name="requisitos">
+			<set>
+				<ref bean="nullObjectEstado" />
+			</set>
+		</property>
+		<property name="destino" ref="gazapo" />
+	</bean>
+
 	<bean id="destete" class="ar.uba.fi.criaderoxp.domain.model.Activity">
 		<constructor-arg value="Destete" />
 		<property name="descripcion" value="Destete" />
@@ -373,6 +390,7 @@
 		<property name="beans">
 			<set>
 				<ref bean="te_nacimiento" />
+				<ref bean="te_compra" />
 				<ref bean="te_destete" />
 				<ref bean="te_sexado" />
 				<ref bean="te_junta" />
@@ -394,6 +412,7 @@
 		<property name="beans">
 			<set>
 				<ref bean="nacimiento" />
+				<ref bean="compra" />
 				<ref bean="destete" />
 				<ref bean="sexadoProductor" />
 				<ref bean="sexadoReproductor" />

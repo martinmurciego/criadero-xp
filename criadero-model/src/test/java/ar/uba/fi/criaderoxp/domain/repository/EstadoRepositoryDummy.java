@@ -17,4 +17,49 @@ public class EstadoRepositoryDummy implements EstadoRepository {
 	public Estado getNullObject() {
 		return Context.getInstance().getBean("nullObjectEstado", Estado.class);
 	}
+
+	@Override
+	public Estado getEngorde() {
+		return Context.getInstance().getBean("engorde", Estado.class);
+	}
+
+	@Override
+	public Estado getGazapo() {
+		return Context.getInstance().getBean("gazapo", Estado.class);
+	}
+
+	@Override
+	public Estado getEnEspera() {
+		return Context.getInstance().getBean("enEspera", Estado.class);
+	}
+
+	@Override
+	public Estado getJuntado() {
+		return Context.getInstance().getBean("juntado", Estado.class);
+	}
+
+	@Override
+	public Estado getProductor() {
+		return Context.getInstance().getBean("productor", Estado.class);
+	}
+
+	@Override
+	public Estado getSacrificado() {
+		return Context.getInstance().getBean("sacrificado", Estado.class);
+	}
+
+	@Override
+	public Estado getVendido() {
+		return Context.getInstance().getBean("vendido", Estado.class);
+	}
+
+	@Override
+	public Estado getAmamantando() {
+		return Context.getInstance().getBean("amamantando", Estado.class);
+	}
+
+	@Override
+	public Estado getPreniado() {
+		return Context.getInstance().getBean("preniado", Estado.class);
+	}
 }

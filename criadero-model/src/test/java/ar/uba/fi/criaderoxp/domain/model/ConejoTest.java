@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.exception.InvalidStateException;
+import ar.uba.fi.criaderoxp.domain.repository.ActivityRepository;
+import ar.uba.fi.criaderoxp.domain.repository.EstadoRepository;
 import ar.uba.fi.criaderoxp.domain.repository.SexoRepository;
 import ar.uba.fi.criaderoxp.domain.security.Usuario;
 import ar.uba.fi.criaderoxp.domain.util.Context;
@@ -46,7 +48,7 @@ public class ConejoTest {
 	 */
 	@Test
 	public void esGazapoAlNacer() {
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("gazapo", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getGazapo());
 	}
 
 	/**
@@ -55,7 +57,27 @@ public class ConejoTest {
 	@Test
 	public void siEsGazapoPuedeDestetarse() {
 		conejo.destetar();
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("engorde", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getEngorde());
+	}
+
+	/**
+	 * Verifica que un conejo sólo pueda comprarse si no pertenece a la empresa. Para ello intenta
+	 * comprar un conejo en estado "Gazapo"
+	 */
+	@Test(expected = BusinessException.class)
+	public void noPuedeComprarseUnConejoPropio() {
+		conejo.comprar(Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getNullObject());
+	}
+
+	/**
+	 * Verifica que un conejo queda en el estado indicado luego de comprarse.
+	 */
+	@Test
+	public void trasComprarUnConejoQuedaEnElEstadoIndicado() {
+		Estado destino = Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getEngorde();
+		Conejo nuevo = new Conejo();
+		nuevo.comprar(destino);
+		Assert.assertEquals(nuevo.getEstado(), destino);
 	}
 
 	/**
@@ -65,7 +87,7 @@ public class ConejoTest {
 	public void enEngordePuedePasarAReproductorAlSexarse() {
 		conejo.destetar();
 		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getEnEspera());
 	}
 
 	/**
@@ -75,7 +97,7 @@ public class ConejoTest {
 	public void enEngordePuedePasarAProductorAlSexarse() {
 		conejo.destetar();
 		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), false);
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("productor", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getProductor());
 	}
 
 	/**
@@ -86,7 +108,7 @@ public class ConejoTest {
 		conejo.destetar();
 		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 		conejo.juntar(new Conejo());
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("juntado", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getJuntado());
 	}
 
 	/**
@@ -133,10 +155,10 @@ public class ConejoTest {
 		conejo.destetar();
 		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), false);
 		conejo.sacrificar();
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("sacrificado", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getSacrificado());
 
 		conejo.vender();
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("vendido", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getVendido());
 	}
 
 	/**
@@ -148,7 +170,7 @@ public class ConejoTest {
 		conejo.sexar(Context.getInstance().getBean("sexoRepository", SexoRepository.class).getMacho(), true);
 		conejo.juntar(new Conejo());
 		conejo.montura();
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getEnEspera());
 	}
 
 	/**
@@ -161,7 +183,7 @@ public class ConejoTest {
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(false);
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getEnEspera());
 	}
 
 	/**
@@ -175,7 +197,7 @@ public class ConejoTest {
 		conejo.montura();
 		conejo.diagnosticar(true);
 		conejo.parir();
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("amamantando", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getAmamantando());
 	}
 
 	/**
@@ -192,7 +214,7 @@ public class ConejoTest {
 		conejo.juntar(new Conejo());
 		conejo.montura();
 		conejo.diagnosticar(true);
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("preniado", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getPreniado());
 	}
 
 	/**
@@ -207,7 +229,7 @@ public class ConejoTest {
 		conejo.diagnosticar(true);
 		conejo.parir();
 		conejo.destetarCrias();
-		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("enEspera", Estado.class));
+		Assert.assertEquals(conejo.getEstado(), Context.getInstance().getBean("estadoRepository", EstadoRepository.class).getEnEspera());
 	}
 
 	/**
@@ -251,7 +273,8 @@ public class ConejoTest {
 	 */
 	@Test
 	public void seRegistranLosEventosAdecuadosParaLaActividad() {
-		TipoEvento tipoCorrecto = Context.getInstance().getBean("muerte", Activity.class).getTipoEvento();
+		TipoEvento tipoCorrecto = Context.getInstance().getBean("activityRepository", ActivityRepository.class)
+				.getMuerte().getTipoEvento();
 		conejo.destetar();
 		conejo.enfermar();
 		conejo.morir();
