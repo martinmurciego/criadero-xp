@@ -1,5 +1,7 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,9 @@ import javax.persistence.Id;
  * posible con un {@link Conejo}.
  */
 @Entity
-public class TipoEvento {
+public class TipoEvento implements Serializable {
+	private static final long serialVersionUID = -8241678581452209859L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;

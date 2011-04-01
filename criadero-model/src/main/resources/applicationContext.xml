@@ -12,18 +12,15 @@
 	<!--  -->
 
 	<!-- INICIO: Repositories -->
-	<bean id="sexoRepository" class="ar.uba.fi.criaderoxp.domain.repository.SexoRepositoryImpl" />
 	<bean id="activityRepository" class="ar.uba.fi.criaderoxp.domain.repository.ActivityRepositoryImpl" />
 	<bean id="estadoRepository" class="ar.uba.fi.criaderoxp.domain.repository.EstadoRepositoryImpl" />
+	<bean id="jaulaRepository" class="ar.uba.fi.criaderoxp.domain.repository.JaulaRepositoryImpl" />
+	<bean id="sexoRepository" class="ar.uba.fi.criaderoxp.domain.repository.SexoRepositoryImpl" />
 	<!-- FIN: Repositories -->
 
 	<!-- INICIO: Capa de servicios -->
-	<!--
-		<bean id="conejoService"
-		class="ar.uba.fi.criaderoxp.domain.service.ConejoServiceImpl" /> <bean
-		id="usuarioService"
-		class="ar.uba.fi.criaderoxp.domain.service.UsuarioServiceImpl" />
-	-->
+	<bean id="usuarioService" class="ar.uba.fi.criaderoxp.domain.service.UsuarioServiceImpl" />
+	<bean id="conejoService" class="ar.uba.fi.criaderoxp.domain.service.ConejoServiceImpl" />
 	<!-- FIN: Capa de servicios -->
 </beans>
 

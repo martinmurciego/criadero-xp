@@ -1,5 +1,8 @@
 package ar.uba.fi.criaderoxp.domain.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ar.uba.fi.criaderoxp.domain.model.Sexo;
 
 /**
@@ -10,6 +13,13 @@ import ar.uba.fi.criaderoxp.domain.model.Sexo;
 public class SexoRepositoryDummy implements SexoRepository {
 	private Sexo hembra = new Sexo("hembra");
 	private Sexo macho = new Sexo("macho");
+
+	public List<Sexo> findAll() {
+		ArrayList<Sexo> list = new ArrayList<Sexo>(2);
+		list.add(macho);
+		list.add(hembra);
+		return list;
+	}
 
 	@Override
 	public Sexo getHembra() {

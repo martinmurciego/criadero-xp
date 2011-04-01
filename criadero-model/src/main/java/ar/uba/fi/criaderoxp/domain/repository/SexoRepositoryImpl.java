@@ -1,5 +1,7 @@
 package ar.uba.fi.criaderoxp.domain.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +18,13 @@ import ar.uba.fi.criaderoxp.domain.model.Sexo;
 public class SexoRepositoryImpl implements SexoRepository {
 	@PersistenceContext
 	private EntityManager em;
+
+	@Transactional(readOnly = true)
+	public List<Sexo> findAll() {
+		Session session = (Session) em.getDelegate();
+		Criteria criteria = session.createCriteria(Sexo.class);
+		return criteria.list();
+	}
 
 	@Transactional(readOnly = true)
 	public Sexo getMacho() {

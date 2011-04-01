@@ -1,5 +1,6 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,9 @@ import javax.persistence.OneToOne;
  * @category Value object
  */
 @Entity
-public class Camada {
+public class Camada implements Serializable {
+	private static final long serialVersionUID = -7227967434009268809L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;

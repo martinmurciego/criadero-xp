@@ -4,7 +4,7 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
-
+<!-- 
 	<servlet>
 		<servlet-name>simple</servlet-name>
 		<servlet-class>ar.uba.fi.criaderoxp.web.SimpleServlet</servlet-class>
@@ -13,5 +13,27 @@
 	<servlet-mapping>
 		<servlet-name>simple</servlet-name>
 		<url-pattern>/simple</url-pattern>
+	</servlet-mapping>
+
+ -->
+
+	<context-param>
+		<param-name>configuration</param-name>
+		<param-value>development</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>SampleApplication</servlet-name>
+		<servlet-class>org.apache.wicket.protocol.http.WicketServlet</servlet-class>
+		<init-param>
+			<param-name>applicationClassName</param-name>
+			<param-value>ar.uba.fi.criaderoxp.web.CriaderoWebApplication</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SampleApplication</servlet-name>
+		<url-pattern>/hello/*</url-pattern>
 	</servlet-mapping>
 </web-app>

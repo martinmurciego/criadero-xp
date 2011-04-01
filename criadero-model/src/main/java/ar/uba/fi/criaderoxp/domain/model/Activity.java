@@ -118,6 +118,7 @@ public class Activity {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null)
-				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Activity) obj).codigo == this.codigo)));
+				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Activity) obj).codigo
+						.equals(this.codigo))));
 	}
 }

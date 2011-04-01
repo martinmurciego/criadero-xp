@@ -1,7 +1,10 @@
 package ar.uba.fi.criaderoxp.domain.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
+import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.model.Estado;
 import ar.uba.fi.criaderoxp.domain.util.Context;
 
@@ -61,5 +64,10 @@ public class EstadoRepositoryDummy implements EstadoRepository {
 	@Override
 	public Estado getPreniado() {
 		return Context.getInstance().getBean("preniado", Estado.class);
+	}
+
+	@Override
+	public List<Estado> findSano() {
+		throw new BusinessException("Not yet implemented!");
 	}
 }

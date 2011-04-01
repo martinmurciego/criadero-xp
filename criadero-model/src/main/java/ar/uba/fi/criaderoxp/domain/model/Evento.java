@@ -1,5 +1,6 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,7 +16,9 @@ import ar.uba.fi.criaderoxp.domain.util.Context;
  * Los eventos son registros de hechos que le suceden a un conejo en algún momento.
  */
 @Entity
-public class Evento {
+public class Evento implements Serializable {
+	private static final long serialVersionUID = 2013474127199536318L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;

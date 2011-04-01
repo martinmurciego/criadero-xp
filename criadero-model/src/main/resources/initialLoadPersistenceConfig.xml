@@ -7,11 +7,8 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-	<!--
-		Este contexto no está pensado para ser utilizado directamente sino
-		para que se lo incluya en algún otro. Se encarga de proporcionar la
-		configuración básica de persistencia para la aplicación.
-	-->
+	<!-- LA ÚNICA DIFERENCIA CON persistenceConfig.xml ES EL PERSISTENCE UNIT
+		 QUE SE LE CONFIGURA AL ENTITYMANAGERFACTORY -->
 
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
@@ -20,7 +17,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://appSrv:5432/criaderoxp" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/criaderoxp" />
 		<property name="username" value="criadero" />
 		<property name="password" value="criadero" />
 	</bean>
@@ -28,7 +25,7 @@
 	<!-- JPA EntityManagerFactory -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="punit"/>
+		<property name="persistenceUnitName" value="initialLoadPUnit"/>
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean id="jpaAdapter"
@@ -53,4 +50,3 @@
 	-->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
-

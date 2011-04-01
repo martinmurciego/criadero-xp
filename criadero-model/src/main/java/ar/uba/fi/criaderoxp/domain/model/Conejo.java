@@ -1,7 +1,9 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +28,9 @@ import ar.uba.fi.criaderoxp.domain.util.Context;
  * @category Aggregate Root
  */
 @Entity
-public class Conejo {
+public class Conejo implements Serializable {
+	private static final long serialVersionUID = -8287059595917447395L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id = null;
@@ -48,13 +52,13 @@ public class Conejo {
 	@ManyToOne
 	private Camada camada;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Jaula jaula;
 
 	@OneToOne
 	private Conejo pareja;
 
-	@OneToOne(optional = false)
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Registro registro = new Registro();
 
 	// Solución transitoria para representar estados concurrentes (al mismo

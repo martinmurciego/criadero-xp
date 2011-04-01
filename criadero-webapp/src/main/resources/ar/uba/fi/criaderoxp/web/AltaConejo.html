@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Nuevo conejo</title>
+</head>
+<body>
+	<h1>Nuevo conejo</h1>
+	<form wicket:id="form">
+		<div wicket:id="feedback"></div>
+		<fieldset>
+			<h2>Datos</h2>
+			<div class="formField">
+				<label for="sexo">Sexo:</label>
+				<select wicket:id="sexo">
+					<option>Macho</option>
+					<option>Hembra</option>
+				</select>
+			</div>
+	
+			<div class="formField">
+				<label for="fechaNacimiento">Fecha de nacimiento:</label>
+				<span wicket:id="fechaNacimiento"></span>
+				<!-- <input wicket:id="fechaNacimiento" type="text" value="13/03/2010" />   -->
+			</div>
+	
+			<div class="formField">
+				<label for="jaula">Jaula:</label>
+				<select wicket:id="jaula">
+					<option>J01</option>
+					<option>J02</option>
+					<option>J14</option>
+				</select>
+			</div>
+	
+			<div class="formField">
+				<label for="estado">Estado:</label>
+				<select wicket:id="estado">
+					<option>Gazapo</option>
+					<option>Engorde</option>
+					<option>En espera</option>
+					<option>Pre&ntilde;ado</option>
+				</select>
+			</div>
+		</fieldset>
+		<input type="submit" value="Comprar" />
+	</form>
+</body>
+</html>

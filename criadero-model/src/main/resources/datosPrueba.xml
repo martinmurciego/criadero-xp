@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="jaula1" class="ar.uba.fi.criaderoxp.domain.model.Jaula">
+		<constructor-arg value="001" />
+		<property name="capacidad" value="10" />
+	</bean>
+	<bean id="jaula2" class="ar.uba.fi.criaderoxp.domain.model.Jaula">
+		<constructor-arg value="002" />
+		<property name="capacidad" value="3" />
+	</bean>
+
+	<bean id="datosPruebaXMLList" class="ar.uba.fi.criaderoxp.BeanList">
+		<property name="beans">
+			<set>
+				<ref bean="jaula1" />
+				<ref bean="jaula2" />
+			</set>
+		</property>
+	</bean>
+</beans>

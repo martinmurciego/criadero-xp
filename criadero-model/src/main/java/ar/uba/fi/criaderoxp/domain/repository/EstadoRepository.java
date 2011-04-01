@@ -1,5 +1,7 @@
 package ar.uba.fi.criaderoxp.domain.repository;
 
+import java.util.List;
+
 import ar.uba.fi.criaderoxp.domain.model.Estado;
 
 /**
@@ -10,6 +12,7 @@ import ar.uba.fi.criaderoxp.domain.model.Estado;
  */
 // TODO (mmazzei) - Ordenar, documentar y completar
 public interface EstadoRepository {
+
 	public Estado getNullObject();
 
 	public Estado getEngorde();
@@ -29,4 +32,7 @@ public interface EstadoRepository {
 	public Estado getAmamantando();
 
 	public Estado getPreniado();
+
+	/** @return Todos los estados que representan a un conejo sano. */
+	public List<Estado> findSano();
 }

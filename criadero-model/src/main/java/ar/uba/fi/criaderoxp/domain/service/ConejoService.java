@@ -2,6 +2,7 @@ package ar.uba.fi.criaderoxp.domain.service;
 
 import ar.uba.fi.criaderoxp.domain.model.Camada;
 import ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Estado;
 
 /**
  * Provee funcionalidad que involucra a varios conejos.
@@ -9,6 +10,17 @@ import ar.uba.fi.criaderoxp.domain.model.Conejo;
  * @author mmazzei
  */
 public interface ConejoService {
+
+	/**
+	 * Utilizado para comprar un conejo.
+	 * 
+	 * @param conejo
+	 *            Conejo adquirido.
+	 * @param estado
+	 *            Estado en el que se lo adquirió.
+	 */
+	public void comprar(Conejo conejo, Estado estado);
+
 	/**
 	 * Junta dos conejos para que formen una pareja.
 	 */

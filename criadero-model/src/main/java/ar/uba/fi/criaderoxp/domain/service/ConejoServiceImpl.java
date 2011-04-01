@@ -9,11 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
 import ar.uba.fi.criaderoxp.domain.model.Camada;
 import ar.uba.fi.criaderoxp.domain.model.Conejo;
+import ar.uba.fi.criaderoxp.domain.model.Estado;
 
 @Service
 public class ConejoServiceImpl implements ConejoService {
 	@PersistenceContext
 	private EntityManager em;
+
+	@Transactional
+	@Override
+	public void comprar(Conejo conejo, Estado estado) {
+		em.persist(conejo);
+		conejo.comprar(estado);
+	}
 
 	@Transactional
 	@Override

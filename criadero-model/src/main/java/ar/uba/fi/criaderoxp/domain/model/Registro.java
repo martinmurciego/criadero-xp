@@ -1,5 +1,6 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import javax.persistence.OneToMany;
  * @category Value object
  */
 @Entity
-public class Registro {
+public class Registro implements Serializable {
+	private static final long serialVersionUID = -3247352306138354637L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;

@@ -1,5 +1,6 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,9 @@ import ar.uba.fi.criaderoxp.domain.exception.BusinessException;
  * varios individuos.
  */
 @Entity
-public class Jaula {
+public class Jaula implements Serializable {
+	private static final long serialVersionUID = -5016105395461162832L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
@@ -25,6 +28,10 @@ public class Jaula {
 
 	@OneToMany
 	private Set<Conejo> conejos;
+
+	/** @deprecated Sólo para uso del framework de persistencia. */
+	public Jaula() {
+	}
 
 	public Jaula(String codigo) {
 		this.codigo = codigo;
@@ -66,5 +73,9 @@ public class Jaula {
 	/** Quita al conejo de la jaula. */
 	public void remove(Conejo conejo) {
 		this.conejos.remove(conejo);
+	}
+
+	public String toString() {
+		return codigo;
 	}
 }

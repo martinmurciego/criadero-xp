@@ -1,5 +1,7 @@
 package ar.uba.fi.criaderoxp.domain.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,9 @@ import javax.persistence.Id;
  * Indica si un individuo es femenino o masculino.
  */
 @Entity
-public class Sexo {
+public class Sexo implements Serializable {
+	private static final long serialVersionUID = -204433916944399448L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
@@ -51,5 +55,9 @@ public class Sexo {
 	public boolean equals(Object obj) {
 		return (obj != null)
 				&& ((this == obj) || (obj.getClass().equals(this.getClass()) && (((Sexo) obj).codigo == this.codigo)));
+	}
+
+	public String toString() {
+		return descripcion;
 	}
 }

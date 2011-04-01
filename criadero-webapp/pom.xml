@@ -24,6 +24,34 @@
 			<artifactId>criadero-model</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+
+		<!-- INICIO: DEPENDECIAS DE WICKET -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+<!-- 
+		<dependency>
+			<groupId>wicket-stuff</groupId>
+			<artifactId>wicket-contrib-datepicker</artifactId>
+			<version>1.2</version>
+		</dependency>
+ -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-datetime</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<!-- TODO (mmazzei) - Ver de agrupar esta dependencia con la de criadero-xp en el parent. -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+		<!-- FIN: DEPENDENCIAS DE WICKET -->
 	</dependencies>
 
 	<build>

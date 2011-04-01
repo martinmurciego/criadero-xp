@@ -8,14 +8,14 @@
 	<import resource="activities.xml" />
 
 	<!-- INICIO: Repositories -->
-	<bean id="sexoRepository" class="ar.uba.fi.criaderoxp.domain.repository.SexoRepositoryDummy" />
 	<bean id="activityRepository" class="ar.uba.fi.criaderoxp.domain.repository.ActivityRepositoryDummy" />
 	<bean id="estadoRepository" class="ar.uba.fi.criaderoxp.domain.repository.EstadoRepositoryDummy" />
+	<bean id="sexoRepository" class="ar.uba.fi.criaderoxp.domain.repository.SexoRepositoryDummy" />
 	<!-- FIN: Repositories -->
 
 	<!-- INICIO: Capa de servicios -->
-	<bean id="usuarioService" class="ar.uba.fi.criaderoxp.domain.service.UsuarioServiceDummy" />
 	<bean id="conejoService" class="ar.uba.fi.criaderoxp.domain.service.ConejoServiceDummy" />
+	<bean id="usuarioService" class="ar.uba.fi.criaderoxp.domain.service.UsuarioServiceDummy" />
 	<!-- FIN: Capa de servicios -->
 
 </beans>
