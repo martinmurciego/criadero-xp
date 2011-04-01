@@ -1,47 +1,53 @@
 package ar.uba.fi.criaderoxp.web;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
-
-import ar.uba.fi.criaderoxp.domain.security.Usuario;
+import org.apache.wicket.security.authentication.LoginException;
 
 public class SigninPage extends WebPage {
-	private static class SigninForm extends StatelessForm {
-		private String username;
-		private String password;
+	@SuppressWarnings("serial")
+	private static class SignInForm extends StatelessForm {
+		private String wiaPassword;
+		private String wiaUsername;
 
-		public SigninForm(String id) {
+		public SignInForm(String id) {
 			super(id);
-			setModel(new CompoundPropertyModel<SigninForm>(this));
-			add(new TextField("username"));
-			add(new PasswordTextField("password"));
+			setModel(new CompoundPropertyModel(this));
+			add(new TextField<String>("wiaUsername"));
+			add(new PasswordTextField("wiaPassword"));
+			add(new Button("submit"));
 		}
 
 		@Override
 		public final void onSubmit() {
-			if (signIn(username, password)) {
+			if (signIn(wiaUsername, wiaPassword)) {
 				if (!continueToOriginalDestination()) {
 					setResponsePage(getApplication().getHomePage());
 				}
-			} else {
+			}
+			else {
 				error("Unknown username/ password");
 			}
 		}
 
 		private boolean signIn(String username, String password) {
-			if (username != null && password != null) {
-				// Usuario user = DataBase.getInstance().findUser(username);
-				// if (user != null) {
-				// if (user.getWiaPassword().equals(password)) {
-				// WiaSession.get().setUser(user);
-				// return true;
-				// }
-				// }
+			try {
+				CriaderoSession.get().login(new LoginContext(username, password));
+				return true;
 			}
-			return false;
+			catch (LoginException e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
+
+	}
+
+	public SigninPage() {
+		add(new SignInForm("signinForm"));
 	}
 }

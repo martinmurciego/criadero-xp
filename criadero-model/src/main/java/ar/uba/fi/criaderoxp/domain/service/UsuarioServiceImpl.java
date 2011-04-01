@@ -1,15 +1,14 @@
 package ar.uba.fi.criaderoxp.domain.service;
 
+import java.util.HashMap;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Property;
-import org.hibernate.criterion.SimpleExpression;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.uba.fi.criaderoxp.domain.security.Rol;
 import ar.uba.fi.criaderoxp.domain.security.Usuario;
 
 @Service
@@ -17,15 +16,35 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@PersistenceContext
 	private EntityManager em;
 
+	private static final HashMap<String, Usuario> tablaUsuarios;
+	static {
+		tablaUsuarios = new HashMap<String, Usuario>();
+		Rol admin = new Rol("admin");
+		Rol jefe = new Rol("jefe");
+		Rol basic = new Rol("basic");
+
+		Usuario root = new Usuario("admin", "admin");
+		root.getRoles().add(admin);
+		tablaUsuarios.put(root.getUsername(), root);
+
+		Usuario jboss = new Usuario("jboss", "jboss");
+		jboss.getRoles().add(jefe);
+		jboss.getRoles().add(basic);
+		tablaUsuarios.put(jboss.getUsername(), jboss);
+
+		Usuario pepe = new Usuario("pepe", "pepe");
+		pepe.getRoles().add(basic);
+		tablaUsuarios.put(pepe.getUsername(), pepe);
+	}
+
 	@Transactional
 	@Override
 	public Usuario getUsuario(String username) {
-		// Query query = em.createQuery("prueba");//find(Usuario.class, avisoId);
-		// get the native hibernate session
-		Session session = (Session) em.getDelegate();
-		SimpleExpression restriccion = Property.forName("username").eq(username);
-		Criteria criteria = session.createCriteria(Usuario.class).add(restriccion);
-		return (Usuario) criteria.uniqueResult();
+		return tablaUsuarios.get(username);
+		// Session session = (Session) em.getDelegate();
+		// SimpleExpression restriccion = Property.forName("username").eq(username);
+		// Criteria criteria = session.createCriteria(Usuario.class).add(restriccion);
+		// return (Usuario) criteria.uniqueResult();
 	}
 
 	@Transactional
