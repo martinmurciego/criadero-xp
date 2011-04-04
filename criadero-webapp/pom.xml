@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>ar.uba.fi.criaderoxp</groupId>
@@ -10,19 +10,6 @@
 	<artifactId>criadero-webapp</artifactId>
 	<packaging>war</packaging>
 	<name>criadero-xp Webapp</name>
-
-	<repositories>
-		<repository>
-			<id>wicketstuff</id>
-			<url>http://wicketstuff.org/maven/repository</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -42,25 +29,23 @@
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket</artifactId>
-			<version>1.4.15</version>
+			<version>1.4.7</version>
 		</dependency>
 
+<!-- 
+		<dependency>
+			<groupId>wicket-stuff</groupId>
+			<artifactId>wicket-contrib-datepicker</artifactId>
+			<version>1.2</version>
+		</dependency>
+ -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-datetime</artifactId>
-			<version>1.4.15</version>
+			<version>1.4.7</version>
 		</dependency>
 
-		<!-- Wicket Security -->
-		<dependency>
-			<groupId>org.apache.wicket.wicket-security</groupId>
-			<artifactId>swarm</artifactId>
-			<version>1.4</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- TODO (mmazzei) - Ver de agrupar esta dependencia con la de criadero-xp 
-			en el parent. -->
+		<!-- TODO (mmazzei) - Ver de agrupar esta dependencia con la de criadero-xp en el parent. -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
