@@ -1,0 +1,2 @@
+Este sistema tiene como objetivo la traza de los conejos, desde el nacimiento de los gazapos hasta el sacrificio o venta como reproductor o producto derivado.
+Asimismo permitirá mantener una "red social" de estos animales, entendiendo como tal a un grafo de relaciones entre individuos. De aquí puede obtenerse información de trazabilidad y árboles genealógicos (pedigrí).
